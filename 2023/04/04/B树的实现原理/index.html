@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/right_c_monkey.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/monket-snow2.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/monket-snow2.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"imcoders.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="B树是一种多路平衡查找树，主要用于实现在磁盘等外存储器上的数据结构，它通过多路分支、节点分裂与合并等方式来保证树的平衡性和快速的查找、插入、删除操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="B树的实现原理">
+<meta property="og:url" content="http://imcoders.cn/2023/04/04/B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="I-Coder">
+<meta property="og:description" content="B树是一种多路平衡查找树，主要用于实现在磁盘等外存储器上的数据结构，它通过多路分支、节点分裂与合并等方式来保证树的平衡性和快速的查找、插入、删除操作。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-04T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-12T01:31:55.252Z">
+<meta property="article:author" content="Ryan Yang">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="树">
+<meta property="article:tag" content="红黑树">
+<meta property="article:tag" content="二叉树">
+<meta property="article:tag" content="B树">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://imcoders.cn/2023/04/04/B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>B树的实现原理 | I-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">I-Coder</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-task">
+
+    <a href="https://www.imcoders.net/todolist/#/all" rel="noopener" target="_blank"><i class="fa fa-list-alt fa-fw"></i>Task</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/RyanYangCoders" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/04/04/B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo_b.jpeg">
+      <meta itemprop="name" content="Ryan Yang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          B树的实现原理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-04-04 16:00:00" itemprop="dateCreated datePublished" datetime="2023-04-04T16:00:00+08:00">2023-04-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-12 09:31:55" itemprop="dateModified" datetime="2023-04-12T09:31:55+08:00">2023-04-12</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/04/04/B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/04/04/B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>B树是一种多路平衡查找树，主要用于实现在磁盘等外存储器上的数据结构，它通过多路分支、节点分裂与合并等方式来保证树的平衡性和快速的查找、插入、删除操作。</p>
+<span id="more"></span>
+
+<h2 id="B树的实现原理"><a href="#B树的实现原理" class="headerlink" title="B树的实现原理"></a>B树的实现原理</h2><p>如下：</p>
+<ul>
+<li><p><strong>B树的节点定义：</strong>B树节点一般包括关键字、指向子节点的指针、以及一些控制信息，例如父节点指针、节点类型等。</p>
+</li>
+<li><p><strong>节点的分裂：</strong>当一个节点中关键字的数量超过了B树节点规定的最大值时，需要将节点分裂为两个节点，并将中间的关键字向上层节点提升，以保持树的平衡性。</p>
+</li>
+<li><p><strong>节点的合并：</strong>当一个节点中关键字的数量低于B树节点规定的最小值时，需要将该节点与它的兄弟节点合并，并将合并后的关键字从上层节点删除，以保持树的平衡性。</p>
+</li>
+<li><p><strong>插入操作：</strong>B树的插入操作主要包括查找插入位置、插入关键字并保持节点平衡。具体操作流程是：从根节点开始，依次查找到叶子节点，如果叶子节点未满，则直接插入；否则，需要将叶子节点分裂并插入关键字，同时将中间的关键字插入父节点，并保持节点平衡。</p>
+</li>
+<li><p><strong>删除操作：</strong>B树的删除操作主要包括查找待删除节点、删除关键字并保持节点平衡。具体操作流程是：从根节点开始，依次查找到待删除节点，如果该节点是叶子节点，则直接删除；否则，需要找到该节点右子树的最小节点或左子树的最大节点来替换待删除节点，同时保持节点平衡。</p>
+</li>
+</ul>
+<p>总的来说，B树的实现原理包括节点的定义、节点的分裂与合并、插入操作、删除操作等。B树通过多路分支、节点分裂与合并等方式来保证树的平衡性和快速的查找、插入、删除操作，适合于在磁盘等外存储器上的数据结构。</p>
+<h2 id="B树有几种"><a href="#B树有几种" class="headerlink" title="B树有几种"></a>B树有几种</h2><p>在B树的概念中，一般说的是B树（B-tree），但是在实际使用中，我们可以根据实际需求来对B树进行改进，从而得到不同的B树类型。常见的B树类型有以下几种：</p>
+<ul>
+<li><p><strong>B树（B-tree）：</strong>最常见的B树类型，也是B树的基本形式。在B树中，每个节点可以包含多个子节点，从而提高数据访问效率。</p>
+</li>
+<li><p><strong>B+树（B+ tree）：</strong>在B+树中，所有的关键字都保存在叶子节点中，并且每个叶子节点通过指针链接起来，形成一个有序的链表。B+树的非叶子节点只用来索引，不保存数据，因此可以更快地进行查找。</p>
+</li>
+<li><p><strong>B树（B tree）：</strong>B树是B+树的一种变体，它通过减少节点的分裂和合并来提高B+树的性能。在B树中，每个节点至少填满了2&#x2F;3个子节点，从而减少了节点的分裂和合并操作。</p>
+</li>
+<li><p><strong>2-3树（2-3 tree）：</strong>2-3树也是一种多路查找树，它的每个节点可以有1个、2个或3个子节点。在2-3树中，所有的叶子节点都在同一层，从而可以保持树的平衡。</p>
+</li>
+</ul>
+<p>总的来说，B树的类型有很多种，可以根据实际需求选择不同的B树类型。不同的B树类型在性能和适用场景上有所不同，需要根据具体情况进行选择。</p>
+<h2 id="B树和二叉树"><a href="#B树和二叉树" class="headerlink" title="B树和二叉树"></a>B树和二叉树</h2><p>B树和二叉树是两种不同的数据结构，它们在结构上有很大的不同。以下是它们之间的区别：</p>
+<ul>
+<li><p><strong>节点数量不同：</strong>B树节点可以有多个子节点，而二叉树每个节点最多只有两个子节点。</p>
+</li>
+<li><p><strong>平衡性不同：</strong>B树是一种平衡的多叉树，可以有多个子节点，每个节点的子节点数量在一定范围内，使得树的高度更低，访问节点更快。而二叉树只有左右两个子节点，因此相对来说更难保持平衡。</p>
+</li>
+<li><p><strong>搜索方式不同：</strong>B树通常是用于大型数据存储，支持高效的随机查找、插入、删除操作，而二叉树通常是用于排序和查找操作，支持快速的顺序遍历。</p>
+</li>
+<li><p><strong>应用场景不同：</strong>B树适合存储海量数据，如数据库索引，文件系统等；而二叉树适合处理数据集合，如排序，查找等。</p>
+</li>
+</ul>
+<p>总的来说，B树和二叉树在结构上有很大的不同，根据不同的应用场景选择不同的数据结构可以提高程序的性能和效率。</p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>红黑树是一种自平衡的二叉搜索树，它是由一组节点和链接组成的有向无环图。红黑树的节点分为红色节点和黑色节点两种，它的性质如下：</p>
+<ul>
+<li><strong>每个节点要么是红色，要么是黑色。</strong></li>
+<li><strong>根节点是黑色的。</strong></li>
+<li><strong>每个叶子节点（空节点）都是黑色的。</strong></li>
+<li><strong>如果一个节点是红色的，则它的子节点必须是黑色的。</strong></li>
+<li><strong>从任意节点到其每个叶子节点的所有路径都包含相同数目的黑色节点。</strong></li>
+</ul>
+<p>红黑树的特点保证了其高度不会超过 2log(n+1)，其中 n 是红黑树中节点的个数。这意味着在插入和删除操作时，红黑树可以通过旋转和重新着色等操作来自动调整树的结构，以保持其自平衡的特性，从而保证了其高效的查找、插入和删除操作。</p>
+<p>在实现红黑树时，我们需要定义一个节点类，用于存储节点的键值、左子节点和右子节点、颜色等信息。红黑树的基本操作包括左旋、右旋、颜色翻转和插入删除操作等。其中，左旋和右旋操作用于维护红黑树的平衡性，颜色翻转操作用于解决红黑树中出现的某些特殊情况，而插入删除操作则需要结合左旋、右旋和颜色翻转等操作来完成。</p>
+<p>红黑树是一种重要的自平衡二叉搜索树，它通过旋转和重新着色等操作来保持树的平衡性，从而实现高效的查找、插入和删除操作。红黑树的性质和操作虽然比较复杂，但是其应用广泛，例如在C++ STL中的set和map等容器中就采用了红黑树作为底层数据结构。</p>
+<h2 id="红黑节点"><a href="#红黑节点" class="headerlink" title="红黑节点"></a>红黑节点</h2><p>红黑树中每个节点都有一个颜色，通常是红色或黑色，这个颜色表示该节点在树中的位置和状态。</p>
+<p>红色节点表示该节点是一个“临时节点”，即在插入或删除操作后，它是暂时存在于树中的节点，它可能在之后的旋转或重新着色操作中被删除或者被重新着色为黑色。</p>
+<p>黑色节点则表示该节点是一个“稳定节点”，它在红黑树中是一个固定的节点，它不会在任何操作中被删除或着色为红色。</p>
+<p>红黑树通过限制节点的颜色，来保证树的平衡性和高效性。根据红黑树的性质，每个节点不是红色就是黑色，同时满足如下性质：</p>
+<ul>
+<li>根节点是黑色的；</li>
+<li>所有的叶节点都是黑色的空节点（即，不含数据的节点）；</li>
+<li>如果一个节点是红色的，则它的两个子节点都是黑色的；</li>
+<li>从任意一个节点到其每个叶子节点的所有路径都包含相同数目的黑色节点。</li>
+</ul>
+<p>这些性质保证了红黑树的高效性和平衡性，保证了任意操作的时间复杂度是 O(log n) 级别的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
+              <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" rel="tag"># 红黑树</a>
+              <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag"># 二叉树</a>
+              <a href="/tags/B%E6%A0%91/" rel="tag"># B树</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/04/04/MongoDB/" rel="prev" title="MongoDB">
+      <i class="fa fa-chevron-left"></i> MongoDB
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/04/04/%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%9C%E8%A5%BF/" rel="next" title="缓存相关的东西">
+      缓存相关的东西 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">B树的实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B%E6%A0%91%E6%9C%89%E5%87%A0%E7%A7%8D"><span class="nav-number">2.</span> <span class="nav-text">B树有几种</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text">B树和二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">4.</span> <span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E8%8A%82%E7%82%B9"><span class="nav-number">5.</span> <span class="nav-text">红黑节点</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ryan Yang"
+      src="/images/logo_b.jpeg">
+  <p class="site-author-name" itemprop="name">Ryan Yang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/RyanYangCoders" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;RyanYangCoders" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yzw@i-coder.cn" title="E-Mail → mailto:yzw@i-coder.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/imcoders" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;imcoders" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/ryanyang0815" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;ryanyang0815" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/ryanyang0815" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;ryanyang0815" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ryan Yang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.4' zIndex="-2" count="220" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'SmhRbKDDuOLlJyejZusFLodY-gzGzoHsz',
+      appKey     : '4gMk6KrJr5aQXxumYvSAoZSw',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
