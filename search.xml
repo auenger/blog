@@ -4,11 +4,24 @@
   
     
     <entry>
+      <title>7-12日 项目会议</title>
+      <link href="/2023/07/12/7-12%E6%97%A5-%E9%A1%B9%E7%9B%AE%E4%BC%9A%E8%AE%AE/"/>
+      <url>/2023/07/12/7-12%E6%97%A5-%E9%A1%B9%E7%9B%AE%E4%BC%9A%E8%AE%AE/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1、项目整体的介绍"><a href="#1、项目整体的介绍" class="headerlink" title="1、项目整体的介绍"></a>1、项目整体的介绍</h2><p>Website、Portal、MEPER-Cloud</p><h2 id="2、业务流程描绘"><a href="#2、业务流程描绘" class="headerlink" title="2、业务流程描绘"></a>2、业务流程描绘</h2><p>draw.io文件描述</p><h2 id="3、现有的website页面加原型图展示"><a href="#3、现有的website页面加原型图展示" class="headerlink" title="3、现有的website页面加原型图展示"></a>3、现有的website页面加原型图展示</h2><p>现有Vue项目和静态html流程描述</p><h2 id="4、目前设计的业务边界"><a href="#4、目前设计的业务边界" class="headerlink" title="4、目前设计的业务边界"></a>4、目前设计的业务边界</h2><p>下载的App数据和启动器设想</p><h2 id="5、针对MEPER的改造和想法"><a href="#5、针对MEPER的改造和想法" class="headerlink" title="5、针对MEPER的改造和想法"></a>5、针对MEPER的改造和想法</h2><p>MEPER的易用性优化，设计页面优化，还有当前多租户分支的Workspace和现有版本的兼容问题</p><h2 id="6、讨论一下（解决方案和优化方案）"><a href="#6、讨论一下（解决方案和优化方案）" class="headerlink" title="6、讨论一下（解决方案和优化方案）"></a>6、讨论一下（解决方案和优化方案）</h2><p>启动器和版本兼容问题</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>门户网站原型</title>
       <link href="/2023/07/10/%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99%E5%8E%9F%E5%9E%8B/"/>
       <url>/2023/07/10/%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99%E5%8E%9F%E5%9E%8B/</url>
       
-        <content type="html"><![CDATA[<p>记录一下原型设计问题</p><span id="more"></span><h2 id="登录后-Header-的变化"><a href="#登录后-Header-的变化" class="headerlink" title="登录后 Header 的变化"></a>登录后 Header 的变化</h2><p><img src="/images/pasted-16.png" alt="upload successful"></p>]]></content>
+        <content type="html"><![CDATA[<p>记录一下原型设计问题</p><span id="more"></span><h2 id="登录后-Header-的变化"><a href="#登录后-Header-的变化" class="headerlink" title="登录后 Header 的变化"></a>登录后 Header 的变化</h2><p><img src="/images/pasted-16.png" alt="upload successful"></p><h2 id="首页动画效果"><a href="#首页动画效果" class="headerlink" title="首页动画效果"></a>首页动画效果</h2><p>鼠标悬停 Hover 的时候会有一个透明度变化和放大的效果</p><p><img src="/images/pasted-17.png" alt="upload successful"></p>]]></content>
       
       
       
