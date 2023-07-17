@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>7-12日 项目会议</title>
-      <link href="/2023/07/12/7-12%E6%97%A5-%E9%A1%B9%E7%9B%AE%E4%BC%9A%E8%AE%AE/"/>
-      <url>/2023/07/12/7-12%E6%97%A5-%E9%A1%B9%E7%9B%AE%E4%BC%9A%E8%AE%AE/</url>
+      <title>windows 环境变量</title>
+      <link href="/2023/07/17/windows-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
+      <url>/2023/07/17/windows-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</url>
       
-        <content type="html"><![CDATA[<h2 id="1、项目整体的介绍"><a href="#1、项目整体的介绍" class="headerlink" title="1、项目整体的介绍"></a>1、项目整体的介绍</h2><p>Website、Portal、MEPER-Cloud</p><h2 id="2、业务流程描绘"><a href="#2、业务流程描绘" class="headerlink" title="2、业务流程描绘"></a>2、业务流程描绘</h2><p>draw.io文件描述</p><h2 id="3、现有的website页面加原型图展示"><a href="#3、现有的website页面加原型图展示" class="headerlink" title="3、现有的website页面加原型图展示"></a>3、现有的website页面加原型图展示</h2><p>现有Vue项目和静态html流程描述</p><h2 id="4、目前设计的业务边界"><a href="#4、目前设计的业务边界" class="headerlink" title="4、目前设计的业务边界"></a>4、目前设计的业务边界</h2><p>下载的App数据和启动器设想</p><h2 id="5、针对MEPER的改造和想法"><a href="#5、针对MEPER的改造和想法" class="headerlink" title="5、针对MEPER的改造和想法"></a>5、针对MEPER的改造和想法</h2><p>MEPER的易用性优化，设计页面优化，还有当前多租户分支的Workspace和现有版本的兼容问题</p><h2 id="6、讨论一下（解决方案和优化方案）"><a href="#6、讨论一下（解决方案和优化方案）" class="headerlink" title="6、讨论一下（解决方案和优化方案）"></a>6、讨论一下（解决方案和优化方案）</h2><p>启动器和版本兼容问题</p>]]></content>
+        <content type="html"><![CDATA[<p>windows 环境变量修改</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">立即生效环境变量：</span><br><span class="line">1、打开cmd输入： set PATH=C: </span><br><span class="line">2、关闭cmd </span><br><span class="line">3、重新打开cmd输入： echo %PATH%</span><br></pre></td></tr></table></figure><span id="more"></span><p>组要针对的问题是 MEPER 项目 node14</p><p>Vue的 website 项目是 node16所以打包的时候需要换 node 环境</p><p>npm 源镜像修改</p><blockquote><p>npm config get registry</p></blockquote><p>默认是指向 </p><blockquote><p><a href="https://registry.npmjs.org/">https://registry.npmjs.org/</a>  也就是官方源。</p></blockquote><p>修改成淘宝源</p><blockquote><p>npm config set registry <a href="https://registry.npmmirror.com/">https://registry.npmmirror.com/</a></p></blockquote>]]></content>
       
       
       
