@@ -20,24 +20,19 @@
     var CONFIG = {"hostname":"imcoders.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="B树是一种多路平衡查找树，主要用于实现在磁盘等外存储器上的数据结构，它通过多路分支、节点分裂与合并等方式来保证树的平衡性和快速的查找、插入、删除操作。">
+  <meta name="description" content="license 设计，目前是 App 下载完成后进行 License 申请， 然后在服务使用期间进行 license 校验，首先完成试用逻辑的 license 生成设计。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="B树的实现原理">
-<meta property="og:url" content="http://imcoders.cn/2023/04/04/B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:title" content="license试用接口">
+<meta property="og:url" content="http://imcoders.cn/2023/07/18/license%E8%AF%95%E7%94%A8%E6%8E%A5%E5%8F%A3/index.html">
 <meta property="og:site_name" content="I-Coder">
-<meta property="og:description" content="B树是一种多路平衡查找树，主要用于实现在磁盘等外存储器上的数据结构，它通过多路分支、节点分裂与合并等方式来保证树的平衡性和快速的查找、插入、删除操作。">
+<meta property="og:description" content="license 设计，目前是 App 下载完成后进行 License 申请， 然后在服务使用期间进行 license 校验，首先完成试用逻辑的 license 生成设计。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-04T08:00:00.000Z">
-<meta property="article:modified_time" content="2023-04-12T01:31:55.252Z">
+<meta property="article:published_time" content="2023-07-18T05:55:18.000Z">
+<meta property="article:modified_time" content="2023-07-18T06:48:12.958Z">
 <meta property="article:author" content="Ryan Yang">
-<meta property="article:tag" content="数据结构">
-<meta property="article:tag" content="树">
-<meta property="article:tag" content="红黑树">
-<meta property="article:tag" content="二叉树">
-<meta property="article:tag" content="B树">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://imcoders.cn/2023/04/04/B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+<link rel="canonical" href="http://imcoders.cn/2023/07/18/license%E8%AF%95%E7%94%A8%E6%8E%A5%E5%8F%A3/">
 
 
 <script id="page-configurations">
@@ -50,7 +45,7 @@
   };
 </script>
 
-  <title>B树的实现原理 | I-Coder</title>
+  <title>license试用接口 | I-Coder</title>
   
 
 
@@ -196,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/04/04/B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/07/18/license%E8%AF%95%E7%94%A8%E6%8E%A5%E5%8F%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo_b.jpeg">
@@ -209,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          B树的实现原理
+          license试用接口
         </h1>
 
         <div class="post-meta">
@@ -218,16 +213,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2023-04-04 16:00:00" itemprop="dateCreated datePublished" datetime="2023-04-04T16:00:00+08:00">2023-04-04</time>
+              <time title="创建时间：2023-07-18 13:55:18 / 修改时间：14:48:12" itemprop="dateCreated datePublished" datetime="2023-07-18T13:55:18+08:00">2023-07-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-12 09:31:55" itemprop="dateModified" datetime="2023-04-12T09:31:55+08:00">2023-04-12</time>
-              </span>
 
           
   
@@ -238,8 +227,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/04/04/B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/04/04/B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/07/18/license%E8%AF%95%E7%94%A8%E6%8E%A5%E5%8F%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/18/license%E8%AF%95%E7%94%A8%E6%8E%A5%E5%8F%A3/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -254,69 +243,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>B树是一种多路平衡查找树，主要用于实现在磁盘等外存储器上的数据结构，它通过多路分支、节点分裂与合并等方式来保证树的平衡性和快速的查找、插入、删除操作。</p>
+        <p>license 设计，目前是 App 下载完成后进行 License 申请， 然后在服务使用期间进行 license 校验，首先完成试用逻辑的 license 生成设计。</p>
 <span id="more"></span>
 
-<h2 id="B树的实现原理"><a href="#B树的实现原理" class="headerlink" title="B树的实现原理"></a>B树的实现原理</h2><p>如下：</p>
-<ul>
-<li><p><strong>B树的节点定义：</strong>B树节点一般包括关键字、指向子节点的指针、以及一些控制信息，例如父节点指针、节点类型等。</p>
-</li>
-<li><p><strong>节点的分裂：</strong>当一个节点中关键字的数量超过了B树节点规定的最大值时，需要将节点分裂为两个节点，并将中间的关键字向上层节点提升，以保持树的平衡性。</p>
-</li>
-<li><p><strong>节点的合并：</strong>当一个节点中关键字的数量低于B树节点规定的最小值时，需要将该节点与它的兄弟节点合并，并将合并后的关键字从上层节点删除，以保持树的平衡性。</p>
-</li>
-<li><p><strong>插入操作：</strong>B树的插入操作主要包括查找插入位置、插入关键字并保持节点平衡。具体操作流程是：从根节点开始，依次查找到叶子节点，如果叶子节点未满，则直接插入；否则，需要将叶子节点分裂并插入关键字，同时将中间的关键字插入父节点，并保持节点平衡。</p>
-</li>
-<li><p><strong>删除操作：</strong>B树的删除操作主要包括查找待删除节点、删除关键字并保持节点平衡。具体操作流程是：从根节点开始，依次查找到待删除节点，如果该节点是叶子节点，则直接删除；否则，需要找到该节点右子树的最小节点或左子树的最大节点来替换待删除节点，同时保持节点平衡。</p>
-</li>
-</ul>
-<p>总的来说，B树的实现原理包括节点的定义、节点的分裂与合并、插入操作、删除操作等。B树通过多路分支、节点分裂与合并等方式来保证树的平衡性和快速的查找、插入、删除操作，适合于在磁盘等外存储器上的数据结构。</p>
-<h2 id="B树有几种"><a href="#B树有几种" class="headerlink" title="B树有几种"></a>B树有几种</h2><p>在B树的概念中，一般说的是B树（B-tree），但是在实际使用中，我们可以根据实际需求来对B树进行改进，从而得到不同的B树类型。常见的B树类型有以下几种：</p>
-<ul>
-<li><p><strong>B树（B-tree）：</strong>最常见的B树类型，也是B树的基本形式。在B树中，每个节点可以包含多个子节点，从而提高数据访问效率。</p>
-</li>
-<li><p><strong>B+树（B+ tree）：</strong>在B+树中，所有的关键字都保存在叶子节点中，并且每个叶子节点通过指针链接起来，形成一个有序的链表。B+树的非叶子节点只用来索引，不保存数据，因此可以更快地进行查找。</p>
-</li>
-<li><p><strong>B树（B tree）：</strong>B树是B+树的一种变体，它通过减少节点的分裂和合并来提高B+树的性能。在B树中，每个节点至少填满了2&#x2F;3个子节点，从而减少了节点的分裂和合并操作。</p>
-</li>
-<li><p><strong>2-3树（2-3 tree）：</strong>2-3树也是一种多路查找树，它的每个节点可以有1个、2个或3个子节点。在2-3树中，所有的叶子节点都在同一层，从而可以保持树的平衡。</p>
-</li>
-</ul>
-<p>总的来说，B树的类型有很多种，可以根据实际需求选择不同的B树类型。不同的B树类型在性能和适用场景上有所不同，需要根据具体情况进行选择。</p>
-<h2 id="B树和二叉树"><a href="#B树和二叉树" class="headerlink" title="B树和二叉树"></a>B树和二叉树</h2><p>B树和二叉树是两种不同的数据结构，它们在结构上有很大的不同。以下是它们之间的区别：</p>
-<ul>
-<li><p><strong>节点数量不同：</strong>B树节点可以有多个子节点，而二叉树每个节点最多只有两个子节点。</p>
-</li>
-<li><p><strong>平衡性不同：</strong>B树是一种平衡的多叉树，可以有多个子节点，每个节点的子节点数量在一定范围内，使得树的高度更低，访问节点更快。而二叉树只有左右两个子节点，因此相对来说更难保持平衡。</p>
-</li>
-<li><p><strong>搜索方式不同：</strong>B树通常是用于大型数据存储，支持高效的随机查找、插入、删除操作，而二叉树通常是用于排序和查找操作，支持快速的顺序遍历。</p>
-</li>
-<li><p><strong>应用场景不同：</strong>B树适合存储海量数据，如数据库索引，文件系统等；而二叉树适合处理数据集合，如排序，查找等。</p>
-</li>
-</ul>
-<p>总的来说，B树和二叉树在结构上有很大的不同，根据不同的应用场景选择不同的数据结构可以提高程序的性能和效率。</p>
-<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>红黑树是一种自平衡的二叉搜索树，它是由一组节点和链接组成的有向无环图。红黑树的节点分为红色节点和黑色节点两种，它的性质如下：</p>
-<ul>
-<li><strong>每个节点要么是红色，要么是黑色。</strong></li>
-<li><strong>根节点是黑色的。</strong></li>
-<li><strong>每个叶子节点（空节点）都是黑色的。</strong></li>
-<li><strong>如果一个节点是红色的，则它的子节点必须是黑色的。</strong></li>
-<li><strong>从任意节点到其每个叶子节点的所有路径都包含相同数目的黑色节点。</strong></li>
-</ul>
-<p>红黑树的特点保证了其高度不会超过 2log(n+1)，其中 n 是红黑树中节点的个数。这意味着在插入和删除操作时，红黑树可以通过旋转和重新着色等操作来自动调整树的结构，以保持其自平衡的特性，从而保证了其高效的查找、插入和删除操作。</p>
-<p>在实现红黑树时，我们需要定义一个节点类，用于存储节点的键值、左子节点和右子节点、颜色等信息。红黑树的基本操作包括左旋、右旋、颜色翻转和插入删除操作等。其中，左旋和右旋操作用于维护红黑树的平衡性，颜色翻转操作用于解决红黑树中出现的某些特殊情况，而插入删除操作则需要结合左旋、右旋和颜色翻转等操作来完成。</p>
-<p>红黑树是一种重要的自平衡二叉搜索树，它通过旋转和重新着色等操作来保持树的平衡性，从而实现高效的查找、插入和删除操作。红黑树的性质和操作虽然比较复杂，但是其应用广泛，例如在C++ STL中的set和map等容器中就采用了红黑树作为底层数据结构。</p>
-<h2 id="红黑节点"><a href="#红黑节点" class="headerlink" title="红黑节点"></a>红黑节点</h2><p>红黑树中每个节点都有一个颜色，通常是红色或黑色，这个颜色表示该节点在树中的位置和状态。</p>
-<p>红色节点表示该节点是一个“临时节点”，即在插入或删除操作后，它是暂时存在于树中的节点，它可能在之后的旋转或重新着色操作中被删除或者被重新着色为黑色。</p>
-<p>黑色节点则表示该节点是一个“稳定节点”，它在红黑树中是一个固定的节点，它不会在任何操作中被删除或着色为红色。</p>
-<p>红黑树通过限制节点的颜色，来保证树的平衡性和高效性。根据红黑树的性质，每个节点不是红色就是黑色，同时满足如下性质：</p>
-<ul>
-<li>根节点是黑色的；</li>
-<li>所有的叶节点都是黑色的空节点（即，不含数据的节点）；</li>
-<li>如果一个节点是红色的，则它的两个子节点都是黑色的；</li>
-<li>从任意一个节点到其每个叶子节点的所有路径都包含相同数目的黑色节点。</li>
-</ul>
-<p>这些性质保证了红黑树的高效性和平衡性，保证了任意操作的时间复杂度是 O(log n) 级别的。</p>
+<h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p>当前工作空间项目打包产生 App 下载使用时，需要对应的 license，可以在下载 App 时，把当前 App 对应的 exe 和试用的 license 文件打包成一个 Zip 压缩包，压缩包中还可以提供一些说明信息，当前 exe 运行安装方式，并且在安装过程中选择试用的 license 文件等信息的文件，类似如下效果：</p>
+<blockquote>
+<p>Meper-App.zip<br>– MeperApp.exe<br>– MeperTrialLicense.identity<br>– Readme.md</p>
+</blockquote>
+<p>所以需要MeperTrialLicense.identity试用许可证去验证当前 App 的试用时间。</p>
+<h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><p>license server 需要开放接口可以针对AppId 进行试用许可证的申请， 针对 MEPER-Cloud 的逻辑，下载 App 需要对应的 SI 账号并且是进行了企业认证的。所以在下载 App 的时候，MEPER 或者 portal 是可以获取到当前的用户信息还有对应下载的 App 信息。</p>
+<p>所以在用户请求下载的时候，我们返回的文件流可以是系统动态产生的压缩文件流，MeperTrialLicense.identity可以在请求的过程中产生， license server 需要开放一个接口，接口可以接受 AppId 和 SI 的 UserId 去产生对应的试用许可证文件。</p>
+<h2 id="需求设计"><a href="#需求设计" class="headerlink" title="需求设计"></a>需求设计</h2><h3 id="Portal-server"><a href="#Portal-server" class="headerlink" title="Portal server"></a>Portal server</h3><p>用户如果从 Vue 前端页面请求的话，是先请求到 Portal Server，Portal Server 直接转发请求到 Meper-Cloud 中进行压缩文件流的返回，同时可以在 Portal Server 中做一次权限验证。</p>
+<h3 id="Meper-Cloud"><a href="#Meper-Cloud" class="headerlink" title="Meper-Cloud"></a>Meper-Cloud</h3><p>MEPER 服务做 App 下载请求的收口操作，当 Project 进行打包 App 时，MEPER 会导出当前 Project 的数据做成 App 数据包，然后请求 Inno Setup的server去打包对应 App 的 exe 文件。</p>
+<p>当收到App 下载请求时MEPER 会先拿到当前 App 对应的exe 文件，然后在通过接口请求拿到 AppId 和 User信息，用 Appid 和 User 信息到 license server 去申请试用许可证的文件（MeperTrialLicense.identity），将试用许可证文件和 exe 文件打包 zip 压缩返回用户下载。</p>
+<h3 id="license-server"><a href="#license-server" class="headerlink" title="license server"></a>license server</h3><p>license server 则需要开放接口，产生对应的试用许可证，并且支持对应试用许可证的校验逻辑。</p>
+<h4 id="创建试用许可证接口"><a href="#创建试用许可证接口" class="headerlink" title="创建试用许可证接口"></a>创建试用许可证接口</h4><h5 id="MeperTrialLicense-identity文件的产生接口。"><a href="#MeperTrialLicense-identity文件的产生接口。" class="headerlink" title="MeperTrialLicense.identity文件的产生接口。"></a>MeperTrialLicense.identity文件的产生接口。</h5><p>**接口请求参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Request</span><br><span class="line">&#123;</span><br><span class="line">	&quot;AppId&quot;:&quot;1000011&quot;，    // 下载试用的 App</span><br><span class="line">    &quot;UserId&quot;:&quot;10001021&quot;，  // 在 MEPER 中认证的 SI 用户 ID</span><br><span class="line">    &quot;LoginName&quot;:&quot;Ryan&quot;,    // SI 登录名</span><br><span class="line">    &quot;FullName&quot;:&quot;杨正武&quot;,    // SI 注册全名</span><br><span class="line">    &quot;CompanyId&quot;:&quot;1010210&quot;, // SI 认证企业 Id</span><br><span class="line">    &quot;CompanyName&quot;:&quot;苏州华冠&quot; // SI 认证企业名称</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>**返回对应的试用许可证文件</p>
+<h5 id="MeperTrialLicense-identity验证接口"><a href="#MeperTrialLicense-identity验证接口" class="headerlink" title="MeperTrialLicense.identity验证接口"></a>MeperTrialLicense.identity验证接口</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Request</span><br><span class="line">&#123;</span><br><span class="line">	&quot;AppId&quot;:&quot;1010101&quot;,    // AppId</span><br><span class="line">    &quot;File&quot;:&quot;*.identity&quot;,  // 二进制试用许可证</span><br><span class="line">    &quot;MAC&quot;:&quot;s12-s12-d-a9s&quot; // 运行机器的 MAC 地址</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当license server 第一次收到当前试用许可证的验证请求时，记录当前请求的 MAC 地址，然后校验许可证文件的有效性和对应 AppId 的一致性，并开始试用时间。</p>
+<p>**第一次请求时接口需要处理的逻辑</p>
+<blockquote>
+<p>1、验证许可证有效性<br>2、验证许可证和 AppId 是否对应<br>3、记录首次请求的 MAC 地址<br>4、开始试用时间</p>
+</blockquote>
+<p>**后续请求的逻辑</p>
+<blockquote>
+<p>1、验证许可证有效性<br>2、AppId 验证<br>3、MAC 地址验证<br>4、时间验证</p>
+</blockquote>
+<h5 id="开放查询identity验证接口"><a href="#开放查询identity验证接口" class="headerlink" title="开放查询identity验证接口"></a>开放查询identity验证接口</h5><p>license server 开放查询接口，可以根据 UserId 或者 CompanyId 进行查询当前用户或者企业的试用许可证，插叙对应许可证对应的 App 和剩余试用时间等信息。</p>
+<p>用户可以通过试用的许可证找到对应的 App 进行后续许可证的申请。</p>
 
     </div>
 
@@ -325,13 +282,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
-              <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
-              <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" rel="tag"># 红黑树</a>
-              <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag"># 二叉树</a>
-              <a href="/tags/B%E6%A0%91/" rel="tag"># B树</a>
-          </div>
 
         
 
@@ -339,13 +289,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/04/04/MongoDB/" rel="prev" title="MongoDB">
-      <i class="fa fa-chevron-left"></i> MongoDB
+    <a href="/2023/07/17/windows-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="prev" title="windows 环境变量">
+      <i class="fa fa-chevron-left"></i> windows 环境变量
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/04/04/%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%9C%E8%A5%BF/" rel="next" title="缓存相关的东西">
-      缓存相关的东西 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -405,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#B%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">B树的实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B%E6%A0%91%E6%9C%89%E5%87%A0%E7%A7%8D"><span class="nav-number">2.</span> <span class="nav-text">B树有几种</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text">B树和二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">4.</span> <span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E8%8A%82%E7%82%B9"><span class="nav-number">5.</span> <span class="nav-text">红黑节点</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">项目背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">需求说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">需求设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Portal-server"><span class="nav-number">3.1.</span> <span class="nav-text">Portal server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Meper-Cloud"><span class="nav-number">3.2.</span> <span class="nav-text">Meper-Cloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#license-server"><span class="nav-number">3.3.</span> <span class="nav-text">license server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%AF%95%E7%94%A8%E8%AE%B8%E5%8F%AF%E8%AF%81%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.3.1.</span> <span class="nav-text">创建试用许可证接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#MeperTrialLicense-identity%E6%96%87%E4%BB%B6%E7%9A%84%E4%BA%A7%E7%94%9F%E6%8E%A5%E5%8F%A3%E3%80%82"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">MeperTrialLicense.identity文件的产生接口。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MeperTrialLicense-identity%E9%AA%8C%E8%AF%81%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">MeperTrialLicense.identity验证接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%80%E6%94%BE%E6%9F%A5%E8%AF%A2identity%E9%AA%8C%E8%AF%81%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.3.1.3.</span> <span class="nav-text">开放查询identity验证接口</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
