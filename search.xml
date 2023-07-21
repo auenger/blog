@@ -4,6 +4,45 @@
   
     
     <entry>
+      <title>MEPER License</title>
+      <link href="/2023/07/22/MEPER-License/"/>
+      <url>/2023/07/22/MEPER-License/</url>
+      
+        <content type="html"><![CDATA[<p>因为MEPER-Cloud 后面要拓展所有的套件，所以 license 校验逻辑需要重新设计。</p><span id="more"></span><h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>license 重新设计的原因MEPER-Cloud 当创建完项目后，是支持所有的套件SDK 调用的，所以在 MEPER-Cluod 中进行开发，不能很好的进行 SDK 使用的监控。</p><p>所以想办法将校验的 license 对应套件的方式，转到下载 APP 启动服务之后，对应 SI 或者企业申请了license，我们将对套件的 SDK 进行拦截检查。</p><h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>之前的 license 是对应公司加上多个 App 也就是不同的套件。但是 MEPER-Cloud 之后，所有的套件将会冗余到一个项目中，所以要针对不同的 SDK 进行 license 标识。</p><p>参考之前的 license aspect 切片，是针对有所有的 IHandler 进行 Around 切面，虽然能够拦截所有的 SDK 的 service，但是没办法针对套件进行区分，所以目前的设计是，针对不同套件的 SDK 进行分类，然后定义针对不同套件的 license aspect 切面，然后共同继承同一个校验 License 的 Base Validator，从而对当前 license 文件是否有效进行验证。</p><h2 id="需求明细"><a href="#需求明细" class="headerlink" title="需求明细"></a>需求明细</h2><h3 id="1、BaseValidator"><a href="#1、BaseValidator" class="headerlink" title="1、BaseValidator"></a>1、BaseValidator</h3><p>能否复用之前的 License loader 的校验逻辑进行处理。</p><h3 id="2、套件的-aspect"><a href="#2、套件的-aspect" class="headerlink" title="2、套件的 aspect"></a>2、套件的 aspect</h3><p>不同的套件的切面逻辑，是否能够抽象，在 framework 中定义，然后不同的套件进行实现和重写， 从而进行套件 SDK 的区分。</p><h3 id="3、在线-license-校验升级离线"><a href="#3、在线-license-校验升级离线" class="headerlink" title="3、在线 license 校验升级离线"></a>3、在线 license 校验升级离线</h3><p>参考之前的逻辑，或者重新设计，怎么处理从在线校验到离线 license 校验的过程。</p><h2 id="业务描述"><a href="#业务描述" class="headerlink" title="业务描述"></a>业务描述</h2><p>license初版设计.png<br><img src="/images/pasted-23.png" alt="upload successful"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>App生成服务</title>
+      <link href="/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/"/>
+      <url>/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/</url>
+      
+        <content type="html"><![CDATA[<p>window server 产生 exe 文件服务的调整</p><span id="more"></span><h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>打包生成的 exe 脚本执行需要windows server 环境，最初的设计是重新封装一个 springboot 服务进行打包，不熟到 windows server 服务器，但是考虑到没必要进行太多次的网络请求，浪费流量成本和网络时间开销，所以目前重新设计，将打包 exe 逻辑接口迁移到 MEPER 服务中， MEPER 暂定部署两个节点，一个 docker  Linux 节点，一个 windows server 节点。</p><h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><p>将打包 exe 脚本接口迁移到 MEPER 中，然后将 portal 调用 MEPER 的接口分成两部分，直接配置指向对应 IP，将 project 打包导出文件接口和 App 封包 exe 接口都去请求Windows server 的服务，则对应产生的 App 数据包和对应的 Inno setup 脚本都在同一个 windows server 服务器，进一步减少网络开销，且当前 windows server 的 MEPER 只去处理文件相关的接口，减轻对应的业务逻辑。</p><h2 id="逻辑时序图"><a href="#逻辑时序图" class="headerlink" title="逻辑时序图"></a>逻辑时序图</h2><p><img src="/images/pasted-22.png" alt="upload successful"></p><h2 id="需求明细"><a href="#需求明细" class="headerlink" title="需求明细"></a>需求明细</h2><h3 id="1、接口迁移"><a href="#1、接口迁移" class="headerlink" title="1、接口迁移"></a>1、接口迁移</h3><p>把之前的 spring boot 逻辑迁移到 MEPER 服务，新开放 http 接口处理打包业务。</p><h3 id="2、处理-App-导出数据包存储的逻辑"><a href="#2、处理-App-导出数据包存储的逻辑" class="headerlink" title="2、处理 App 导出数据包存储的逻辑"></a>2、处理 App 导出数据包存储的逻辑</h3><p>之前的打包文件的 package 逻辑对应的文件路径重新整理逻辑。</p><h3 id="3、初始化项目接口获取-App-数据包"><a href="#3、初始化项目接口获取-App-数据包" class="headerlink" title="3、初始化项目接口获取 App 数据包"></a>3、初始化项目接口获取 App 数据包</h3><p>优化创建 project 的逻辑，根据 Appid 获取对应 jbf 数据包，优化数据备份接口，还有项目初始化过程中的数据初始化 Task，兼容新的.MEPERApp (gzip,zip)文件。</p><h3 id="4、portal-的-fegin接口整理"><a href="#4、portal-的-fegin接口整理" class="headerlink" title="4、portal 的 fegin接口整理"></a>4、portal 的 fegin接口整理</h3><p>处理portal 的 fegin 接口，对应请求打包文件相关的接口独立区分开。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vue前端页面任务</title>
+      <link href="/2023/07/22/Vue%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E4%BB%BB%E5%8A%A1/"/>
+      <url>/2023/07/22/Vue%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E4%BB%BB%E5%8A%A1/</url>
+      
+        <content type="html"><![CDATA[<p>需要专业前端帮忙一下。</p><span id="more"></span><p>静态页面的调整 </p><p>Home 主页样式调整还有两个小功能地方调整。</p><a href="/2023/07/10/%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99%E5%8E%9F%E5%9E%8B/" title="门户网站原型">门户网站原型</a><h3 id="1、产品介绍的WMS"><a href="#1、产品介绍的WMS" class="headerlink" title="1、产品介绍的WMS"></a>1、产品介绍的WMS</h3><p><img src="/images/pasted-18.png" alt="upload successful"><br> （图 1-2）</p><h3 id="2、产品下载"><a href="#2、产品下载" class="headerlink" title="2、产品下载"></a>2、产品下载</h3><h3 id="3、应用详情页面"><a href="#3、应用详情页面" class="headerlink" title="3、应用详情页面"></a>3、应用详情页面</h3><p><img src="/images/pasted-19.png" alt="upload successful"><br>图 3</p><h3 id="4、产品介绍的-MES"><a href="#4、产品介绍的-MES" class="headerlink" title="4、产品介绍的 MES"></a>4、产品介绍的 MES</h3><p><img src="/images/pasted-20.png" alt="upload successful"><br>图 4</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>license试用接口</title>
       <link href="/2023/07/18/license%E8%AF%95%E7%94%A8%E6%8E%A5%E5%8F%A3/"/>
       <url>/2023/07/18/license%E8%AF%95%E7%94%A8%E6%8E%A5%E5%8F%A3/</url>
