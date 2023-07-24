@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>设计页面引导访问</title>
+      <link href="/2023/07/24/%E8%AE%BE%E8%AE%A1%E9%A1%B5%E9%9D%A2%E5%BC%95%E5%AF%BC%E8%AE%BF%E9%97%AE/"/>
+      <url>/2023/07/24/%E8%AE%BE%E8%AE%A1%E9%A1%B5%E9%9D%A2%E5%BC%95%E5%AF%BC%E8%AE%BF%E9%97%AE/</url>
+      
+        <content type="html"><![CDATA[<p>MEPER 的设计页面引导访问的流程设计。</p><p>简单设计一个流程然后后面再针对功能进行设计其他引导。</p><span id="more"></span><p><img src="/images/pasted-27.png" alt="upload successful"></p><p>针对当前设计页面做一套引导。</p><h2 id="进入页面后，先介绍几大块。"><a href="#进入页面后，先介绍几大块。" class="headerlink" title="进入页面后，先介绍几大块。"></a>进入页面后，先介绍几大块。</h2><p>1、页面左上角的标题 ，简单描述一下左上角显示的是哪些内容，还意义</p><p><img src="/images/pasted-25.png" alt="upload successful"></p><p>2、介绍 Header 中间几个按钮的功能和具体的意义</p><p><img src="/images/pasted-26.png" alt="upload successful"></p><p>3、介绍左侧组件列表</p><p><img src="/images/pasted-28.png" alt="upload successful"></p><p>4、介绍左侧组件库</p><p><img src="/images/pasted-29.png" alt="upload successful"></p><p>5、介绍页面中间的核心设计块</p><p><img src="/images/pasted-30.png" alt="upload successful"></p><p>6、介绍中心块的设计和流程按钮</p><p><img src="/images/pasted-31.png" alt="upload successful"></p><p>7、右侧的属性模块</p><p><img src="/images/pasted-32.png" alt="upload successful"></p><p><strong>以上的介绍都是需要高亮介绍模块</strong></p><h2 id="进行一个细节引导"><a href="#进行一个细节引导" class="headerlink" title="进行一个细节引导"></a>进行一个细节引导</h2><p>以下的引导不需要进行高亮的。只要用户一边操作一边引导。</p><p>1、引导用户点击组件库的布局按钮</p><p><img src="/images/pasted-33.png" alt="upload successful"></p><p>2、引导用户拖动一个水平布局到设计模块</p><p><img src="/images/pasted-34.png" alt="upload successful"></p><p>3、引导用户点击组件库的基础按钮</p><p><img src="/images/pasted-35.png" alt="upload successful"></p><p>4、引导用户拖动一个表格组件进入水平布局</p><p><img src="/images/pasted-36.png" alt="upload successful"></p><p>5、引导用户点击设计块中的表格组件</p><p><img src="/images/pasted-37.png" alt="upload successful"></p><p>6、引导用户在右侧功能栏中点击数据源</p><p><img src="/images/pasted-38.png" alt="upload successful"><br>7、引导用户点击绑定数据源</p><p><img src="/images/pasted-39.png" alt="upload successful"></p><p>8、引导用户绑定一个数据源</p><p><img src="/images/pasted-40.png" alt="upload successful"></p><p>9 引导用户点击绑定系统对象</p><p><img src="/images/pasted-41.png" alt="upload successful"><br>10、选择 User</p><p><img src="/images/pasted-42.png" alt="upload successful"><br>11、保存</p><p><img src="/images/pasted-43.png" alt="upload successful"><br>12、点击生成子项目</p><p><img src="/images/pasted-44.png" alt="upload successful"><br>13、选择getname 并输入 文本</p><p><img src="/images/pasted-45.png" alt="upload successful"><br>14、点击保存按钮</p><p><img src="/images/pasted-46.png" alt="upload successful"><br>15、点击 header 保存按钮</p><p><img src="/images/pasted-47.png" alt="upload successful"><br>16、点击 header 预览按钮</p><p><img src="/images/pasted-48.png" alt="upload successful"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MEPER License</title>
       <link href="/2023/07/22/MEPER-License/"/>
       <url>/2023/07/22/MEPER-License/</url>
@@ -30,7 +43,7 @@
     
     
     <entry>
-      <title>Vue前端页面任务</title>
+      <title>前端页面任务</title>
       <link href="/2023/07/22/Vue%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E4%BB%BB%E5%8A%A1/"/>
       <url>/2023/07/22/Vue%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E4%BB%BB%E5%8A%A1/</url>
       
