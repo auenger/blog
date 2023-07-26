@@ -20,21 +20,19 @@
     var CONFIG = {"hostname":"imcoders.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在Java中，IO操作是非常常见的操作。">
+  <meta name="description" content="ExportTab 页面导出数据的backup逻辑中，特殊处理一下PageEditor数据，导出的PageEditor带有当前APP的标识，当前的Project如果没有打包App的话，则当前的PageEditor数据标识还是存的上一个App的标识。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java IO">
-<meta property="og:url" content="http://imcoders.cn/2023/04/11/Java-IO/index.html">
+<meta property="og:title" content="PageEditor数据标识">
+<meta property="og:url" content="http://imcoders.cn/2023/07/26/PageEditor%E6%95%B0%E6%8D%AE%E6%A0%87%E8%AF%86/index.html">
 <meta property="og:site_name" content="I-Coder">
-<meta property="og:description" content="在Java中，IO操作是非常常见的操作。">
+<meta property="og:description" content="ExportTab 页面导出数据的backup逻辑中，特殊处理一下PageEditor数据，导出的PageEditor带有当前APP的标识，当前的Project如果没有打包App的话，则当前的PageEditor数据标识还是存的上一个App的标识。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-11T08:57:00.000Z">
-<meta property="article:modified_time" content="2023-04-12T01:29:08.266Z">
+<meta property="article:published_time" content="2023-07-26T06:59:43.000Z">
+<meta property="article:modified_time" content="2023-07-26T06:59:46.640Z">
 <meta property="article:author" content="Ryan Yang">
-<meta property="article:tag" content="JAVA">
-<meta property="article:tag" content="IO">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://imcoders.cn/2023/04/11/Java-IO/">
+<link rel="canonical" href="http://imcoders.cn/2023/07/26/PageEditor%E6%95%B0%E6%8D%AE%E6%A0%87%E8%AF%86/">
 
 
 <script id="page-configurations">
@@ -47,7 +45,7 @@
   };
 </script>
 
-  <title>Java IO | I-Coder</title>
+  <title>PageEditor数据标识 | I-Coder</title>
   
 
 
@@ -193,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/04/11/Java-IO/">
+    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/07/26/PageEditor%E6%95%B0%E6%8D%AE%E6%A0%87%E8%AF%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo_b.jpeg">
@@ -206,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Java IO
+          PageEditor数据标识
         </h1>
 
         <div class="post-meta">
@@ -215,16 +213,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2023-04-11 16:57:00" itemprop="dateCreated datePublished" datetime="2023-04-11T16:57:00+08:00">2023-04-11</time>
+              <time title="创建时间：2023-07-26 14:59:43 / 修改时间：14:59:46" itemprop="dateCreated datePublished" datetime="2023-07-26T14:59:43+08:00">2023-07-26</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-12 09:29:08" itemprop="dateModified" datetime="2023-04-12T09:29:08+08:00">2023-04-12</time>
-              </span>
 
           
   
@@ -235,8 +227,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/04/11/Java-IO/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/04/11/Java-IO/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/07/26/PageEditor%E6%95%B0%E6%8D%AE%E6%A0%87%E8%AF%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/26/PageEditor%E6%95%B0%E6%8D%AE%E6%A0%87%E8%AF%86/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -251,37 +243,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在Java中，IO操作是非常常见的操作。</p>
+        <p>ExportTab 页面导出数据的backup逻辑中，特殊处理一下PageEditor数据，导出的PageEditor带有当前APP的标识，当前的Project如果没有打包App的话，则当前的PageEditor数据标识还是存的上一个App的标识。</p>
 <span id="more"></span>
 
-<details>
-  <summary>展开查看</summary>
-  <pre>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(&quot;Hello&quot;);</span><br></pre></td></tr></table></figure>
+<h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>目前License针对的是每种套件的SDK接口层进行验证，但是创建了Project之后，在MEPER-Cloud环境中，是默认可以使用所有的SDK接口参数的，我们的套件的主要逻辑又是基于PageEditor数据的，所以将当前Project的依赖逻辑处理标识放在PageEditor数据中，增加当前PageEditorEntity中标注出当前的页面是从哪个套件或者App中导出的，作为一个可追溯来源的标识。</p>
+<h2 id="字段设计"><a href="#字段设计" class="headerlink" title="字段设计"></a>字段设计</h2><p>针对PageEditorEntity模型新增两个字段，一个是来源App标识（SourceApp），一个是当前App标识(CurrentApp)。</p>
+<h3 id="SourceApp"><a href="#SourceApp" class="headerlink" title="SourceApp"></a>SourceApp</h3><p>项目创建的时候会选择空项目或者是基于MES的项目这种情况，则数据包中对应的PageEditor数据中，数据AppBase的这部分数据对应的SourceApp字段就是AppBase，若是选择的MES项目的话，则对应数据包中，AppBase部分的PageEditor数据对应的字段就是AppBase，而在MES中新增的PageEditor数据对应的SourceApp字段则为MES。</p>
+<h3 id="CurrentApp"><a href="#CurrentApp" class="headerlink" title="CurrentApp"></a>CurrentApp</h3><p>当前字段的逻辑设计是为了追溯当前PageEditor数据来源设计的，当一个项目创建的时候，基于哪个App的数据包进行初始化的时候，则SourceApp就是去找对应的CurrentApp进行赋值。若是Project没有进行打包App处理的话，直接通过数据备份进行导出话，则当前CurrentApp字段为空，直接默认SourceApp就是之前的值。</p>
+<p>如果当前的Project进行过一次打包App的话，则对应的数据中的PageEditor中对应CurrentApp字段都需要赋值为对应打包的App标识。而这个时候直接从数据备份中导出的话，则SourceApp将会自动变为当前Project创建的App的标识，导入到其他的Project中去。</p>
+<h2 id="字段逻辑"><a href="#字段逻辑" class="headerlink" title="字段逻辑"></a>字段逻辑</h2><h3 id="套件数据"><a href="#套件数据" class="headerlink" title="套件数据"></a>套件数据</h3><p>系统默认的套件数据包中，PageEditor数据的SourceApp和CurrentApp数据都是对应套件App的标识。</p>
+<blockquote>
+<p>AppBase</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PageEditor:</span><br><span class="line">&#123;</span><br><span class="line">&quot;SourceApp&quot;:&quot;AppBase&quot;,</span><br><span class="line">&quot;CurrentApp&quot;:&quot;AppBase&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>MES</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PageEditor:</span><br><span class="line">&#123;</span><br><span class="line">&quot;SourceApp&quot;:&quot;MES&quot;,</span><br><span class="line">&quot;CurrentApp&quot;:&quot;MES&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="新创建的Project"><a href="#新创建的Project" class="headerlink" title="新创建的Project"></a>新创建的Project</h3><p>当用户创建新的项目基于对应的App，则对应的PageEditor数据字段应当是对应创建Project的时候的App。</p>
+<p>例如如果是基于AppBase创建的项目：</p>
+<blockquote>
+<p>AppBase 创建了 Project1 </p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PageEditor:</span><br><span class="line">&#123;</span><br><span class="line">&quot;SourceApp&quot;:&quot;AppBase&quot;,</span><br><span class="line">&quot;CurrentApp&quot;:&quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>创建完成后SourceApp是对应数据中的CurrentApp，而现在的CurrentApp字段则默认为空。</p>
+<p><strong>所以按照这个逻辑处理的话，SourceApp是一直有字段的，所以在这个时候使用数据备份导出当前的PageEditor数据的话，SourceApp是数据的，导入其他的Project的话，导入逻辑如果CurrentApp字段为空的话，使用SourceApp相当于溯源到上级项目</strong></p>
+<h3 id="Project打包了App"><a href="#Project打包了App" class="headerlink" title="Project打包了App"></a>Project打包了App</h3><p>当创建的工作空间进行了APP打包,那么在打包过程中可以通过PageEditor的SourceApp数据进行统计当前的套件使用情况，或者是来源的App情况，然后去溯源App对应的License。</p>
+<p>而且打包过程中创建了App，则需要在数据中将PageEditor的CurrentApp字段都赋值为当前创建的App。</p>
+<blockquote>
+<p>Project1 打包了 App1</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PageEditor:</span><br><span class="line">&#123;</span><br><span class="line">&quot;SourceApp&quot;:&quot;AppBase&quot;,</span><br><span class="line">&quot;CurrentApp&quot;:&quot;App1&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>  </pre></p>
-</details>
-
-<p>下面是Java IO相关需要关注的内容：</p>
-<ul>
-<li><p><strong>输入流和输出流：</strong>Java中的IO操作基本上是围绕着输入流和输出流进行的。输入流用于读取数据，输出流用于写入数据。</p>
-</li>
-<li><p><strong>字节流和字符流：</strong>Java IO提供了两种流，即字节流和字符流。字节流适用于处理二进制数据，字符流适用于处理文本数据。</p>
-</li>
-<li><p><strong>缓冲流：</strong>缓冲流是一种高效的流，它可以在读写数据时将数据缓存起来，从而减少对底层IO设备的访问次数，提高IO性能。</p>
-</li>
-<li><p><strong>文件操作：</strong>Java IO提供了大量的文件操作API，包括文件的读写、复制、移动、删除等。</p>
-</li>
-<li><p><strong>序列化和反序列化：</strong>序列化是将对象转换成字节流的过程，反序列化是将字节流转换成对象的过程。Java IO提供了ObjectInputStream和ObjectOutputStream两个类来支持对象的序列化和反序列化。</p>
-</li>
-<li><p><strong>网络编程：</strong>Java IO提供了一套强大的网络编程API，包括Socket、ServerSocket、DatagramSocket等类，可以实现基于TCP和UDP协议的网络编程。</p>
-</li>
-<li><p><strong>NIO：</strong>NIO是Java 1.4引入的新IO框架，它提供了非阻塞的IO操作，可以大幅度提高IO性能。NIO包含了Channel、Selector、Buffer等核心类。</p>
-</li>
-<li><p><strong>异步IO：</strong>Java 7引入了异步IO API，也称为NIO.2，它可以让应用程序在进行IO操作时不必阻塞，提高IO性能。</p>
-</li>
-</ul>
-<p>总之，Java IO是Java编程中非常重要的一个方面，需要掌握输入流和输出流、字节流和字符流、缓冲流、文件操作、序列化和反序列化、网络编程、NIO等知识点，以提高IO性能。</p>
+<p>所以当这个时候在备份数据中导出PageEditor的话，对应的CurrentApp字段就为当前的App，那么导入到其他的Project中的话，其他的Project中对应的PageEditor字段的<br>SourceApp就变成了当前的App（也就是App1）。</p>
+<h2 id="需求目的"><a href="#需求目的" class="headerlink" title="需求目的"></a>需求目的</h2><p>记录了所有的PageEditor的这两字段后，当Project进行数据打包的时候，就可以根据PageEditor中的SourceApp字段作为依据产生对应的License。</p>
+<p>如果是当前的Project项目是基于系统App创建的话，那么如果PageEditor的SourceApp有AppBase或者MES那么License产生的时候，应该自动默认包含这两个部分的套件。</p>
+<p>如果当前的Project是经过SI二次开发的，而且打包了对应的APP的话，那么SourceApp对应的字段应该可以找到对应的App，然后通过对应的App产生的License进行重新产生当前Project对应App的License。</p>
 
     </div>
 
@@ -290,10 +287,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/JAVA/" rel="tag"># JAVA</a>
-              <a href="/tags/IO/" rel="tag"># IO</a>
-          </div>
 
         
 
@@ -301,13 +294,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/04/11/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="prev" title="Git常用命令">
-      <i class="fa fa-chevron-left"></i> Git常用命令
+    <a href="/2023/07/24/%E8%AE%BE%E8%AE%A1%E9%A1%B5%E9%9D%A2%E5%BC%95%E5%AF%BC%E8%AE%BF%E9%97%AE/" rel="prev" title="设计页面引导访问">
+      <i class="fa fa-chevron-left"></i> 设计页面引导访问
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/07/04/%E5%B9%95%E5%AE%A2%E7%A1%AE%E5%AE%9A/" rel="next" title="幕客确定">
-      幕客确定 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -367,6 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">需求背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E6%AE%B5%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">字段设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SourceApp"><span class="nav-number">2.1.</span> <span class="nav-text">SourceApp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CurrentApp"><span class="nav-number">2.2.</span> <span class="nav-text">CurrentApp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E6%AE%B5%E9%80%BB%E8%BE%91"><span class="nav-number">3.</span> <span class="nav-text">字段逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%97%E4%BB%B6%E6%95%B0%E6%8D%AE"><span class="nav-number">3.1.</span> <span class="nav-text">套件数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%88%9B%E5%BB%BA%E7%9A%84Project"><span class="nav-number">3.2.</span> <span class="nav-text">新创建的Project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Project%E6%89%93%E5%8C%85%E4%BA%86App"><span class="nav-number">3.3.</span> <span class="nav-text">Project打包了App</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E7%9B%AE%E7%9A%84"><span class="nav-number">4.</span> <span class="nav-text">需求目的</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
