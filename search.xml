@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Vue Portal MEPER调用关系</title>
+      <link href="/2023/07/26/Vue-Portal-MEPER%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB/"/>
+      <url>/2023/07/26/Vue-Portal-MEPER%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB/</url>
+      
+        <content type="html"><![CDATA[<p>整理一下整体的调用链路和设计。</p><p>目前整理流程暂时分为四个服务</p><blockquote><p>Website<br>Portal<br>Linux MEPER<br>Window MEPER</p></blockquote><span id="more"></span><h2 id="Vue-Website"><a href="#Vue-Website" class="headerlink" title="Vue Website"></a>Vue Website</h2><p>首先确认Website大概有多少的调用请求</p><h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><blockquote><p>Portal</p></blockquote><p>用户注册逻辑，请求设计是Website请求到Portal，注册成一个用户，需要继续进行引导去做企业认证。</p><p>需要处理的点是，如果是用户没有进行企业认证的话，或者没有认证审核通过的话，不能直接通过MEPER登录，也就是说MEPER的用户需要在当前的用户进行了企业认证而且在企业认证审核通过之后才可以登录。</p><h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><blockquote><p>Portal</p></blockquote><p>用户登录到Portal进行一些简单的信息查看和跳转等等， 但是在没有进行企业认证的情况下，没有办法进行下载和其他的操作。</p><p>如果点击了相关下载功能等，需要进行跳转和引导进行企业认证。</p><p>需要处理的点，目前如果是从Portal登录后，会自动去MEPER调用登录接口，请求MEPER的token，这一块需要加一个判断进行处理，如果没有企业认证的话，不需要拿token。</p><h3 id="更新用户信息"><a href="#更新用户信息" class="headerlink" title="更新用户信息"></a>更新用户信息</h3><blockquote><p>Portal</p></blockquote><p>更新用户的基本信息，目前用户名是不支持更新的，即使后期可以改，也要进行唯一性验证。</p><h3 id="企业认证"><a href="#企业认证" class="headerlink" title="企业认证"></a>企业认证</h3><blockquote><p>Portal</p></blockquote><p>注册公司信息，还是仅仅在Portal中处理这部分逻辑，创建公司信息还是在Portal处理。</p><h3 id="更新企业信息"><a href="#更新企业信息" class="headerlink" title="更新企业信息"></a>更新企业信息</h3><blockquote><p>Portal</p></blockquote><p>更新注册的公司信息还是在Portal包括管理员进行审核和状态变更。</p><blockquote><p>Linux MEPER</p></blockquote><p>需要处理的点，当企业认证信息被审核通过后，才去MEPER进行信息的同步，也就是企业认证审核通过后用户才可以通过MEPER的链接直接进行登录操作</p><h3 id="创建工作空间"><a href="#创建工作空间" class="headerlink" title="创建工作空间"></a>创建工作空间</h3><p>逻辑变更后，创建工作空间的请求直接到MEPER。</p><blockquote><p>Window MEPER</p></blockquote><p>需要处理和确认的点<br>请求到MEPER的时候需要先获取到MEPER的token，然后才能去请求的MEPER的接口，还有一点，请求的参数中的UserId或者CompanyId的信息，需要使用的是MEPER表里面的对应的ID。</p><h3 id="更新工作空间"><a href="#更新工作空间" class="headerlink" title="更新工作空间"></a>更新工作空间</h3><blockquote><p>Linux MEPER</p></blockquote><p>同上直接请求MEPER的接口，需要注意在header中拼装上对应的token调用。</p><h3 id="查询工作空间"><a href="#查询工作空间" class="headerlink" title="查询工作空间"></a>查询工作空间</h3><blockquote><p>Linux MEPER</p></blockquote><h3 id="创建App"><a href="#创建App" class="headerlink" title="创建App"></a>创建App</h3><blockquote><p>Window MEPER</p></blockquote><h3 id="更新App"><a href="#更新App" class="headerlink" title="更新App"></a>更新App</h3><blockquote><p>Linux MEPER</p></blockquote><h3 id="查询App"><a href="#查询App" class="headerlink" title="查询App"></a>查询App</h3><blockquote><p>Linux MEPER</p></blockquote><h3 id="下载App"><a href="#下载App" class="headerlink" title="下载App"></a>下载App</h3><blockquote><p>Window MEPER</p></blockquote><h3 id="拓展的App评论"><a href="#拓展的App评论" class="headerlink" title="拓展的App评论"></a>拓展的App评论</h3><blockquote><p>Linux MEPER</p></blockquote>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PageEditor数据标识</title>
       <link href="/2023/07/26/PageEditor%E6%95%B0%E6%8D%AE%E6%A0%87%E8%AF%86/"/>
       <url>/2023/07/26/PageEditor%E6%95%B0%E6%8D%AE%E6%A0%87%E8%AF%86/</url>
