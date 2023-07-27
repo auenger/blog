@@ -20,15 +20,24 @@
     var CONFIG = {"hostname":"imcoders.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="I-Coder">
-<meta property="og:url" content="http://imcoders.cn/tags/Cache/index.html">
+  <meta name="description" content="Meper-cloud涉及到的一些页面要增加到Vaadin中，目前两个页面需要处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MEPER-Cloud页面改造">
+<meta property="og:url" content="http://imcoders.cn/2023/07/27/MEPER-Cloud%E9%A1%B5%E9%9D%A2%E6%94%B9%E9%80%A0/index.html">
 <meta property="og:site_name" content="I-Coder">
+<meta property="og:description" content="Meper-cloud涉及到的一些页面要增加到Vaadin中，目前两个页面需要处理">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://imcoders.cn/images/pasted-49.png">
+<meta property="og:image" content="http://imcoders.cn/images/pasted-50.png">
+<meta property="og:image" content="http://imcoders.cn/images/pasted-51.png">
+<meta property="og:image" content="http://imcoders.cn/images/pasted-52.png">
+<meta property="article:published_time" content="2023-07-27T06:24:15.000Z">
+<meta property="article:modified_time" content="2023-07-27T06:25:13.647Z">
 <meta property="article:author" content="Ryan Yang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://imcoders.cn/images/pasted-49.png">
 
-<link rel="canonical" href="http://imcoders.cn/tags/Cache/">
+<link rel="canonical" href="http://imcoders.cn/2023/07/27/MEPER-Cloud%E9%A1%B5%E9%9D%A2%E6%94%B9%E9%80%A0/">
 
 
 <script id="page-configurations">
@@ -36,12 +45,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: Cache | I-Coder</title>
+  <title>MEPER-Cloud页面改造 | I-Coder</title>
   
 
 
@@ -180,57 +189,110 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/07/27/MEPER-Cloud%E9%A1%B5%E9%9D%A2%E6%94%B9%E9%80%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo_b.jpeg">
+      <meta itemprop="name" content="Ryan Yang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MEPER-Cloud页面改造
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-07-27 14:24:15 / 修改时间：14:25:13" itemprop="dateCreated datePublished" datetime="2023-07-27T14:24:15+08:00">2023-07-27</time>
+            </span>
+
+          
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Cache
-          <small>标签</small>
-        </h2>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/07/27/MEPER-Cloud%E9%A1%B5%E9%9D%A2%E6%94%B9%E9%80%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/27/MEPER-Cloud%E9%A1%B5%E9%9D%A2%E6%94%B9%E9%80%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+        <p>Meper-cloud涉及到的一些页面要增加到Vaadin中，目前两个页面需要处理</p>
+<span id="more"></span>
+
+<h2 id="1、User"><a href="#1、User" class="headerlink" title="1、User"></a>1、User</h2><h3 id="查询user"><a href="#查询user" class="headerlink" title="查询user"></a>查询user</h3><p>先处理User 页面查询的时候开放接口查询条件，可以根据工作空间进行查询，对应字段是DATA_PERMISSION_PREDICATE</p>
+<p>绑定对应的是 ProjectEntity的Id，展示的话需要展示 ProjectEntity 的 projectName。</p>
+<p>也就是新增一个下拉框，可以选择不同的 projectName<br><img src="/images/pasted-49.png" alt="upload successful"></p>
+<h3 id="创建-x2F-更新User"><a href="#创建-x2F-更新User" class="headerlink" title="创建&#x2F;更新User"></a>创建&#x2F;更新User</h3><p>创建更新User的时候新增下拉框必选项，给当前User确定工作空间。<br>如下图所示<br><img src="/images/pasted-50.png" alt="upload successful"><br>可以创建和修改的时候给定User对应工作空间，也可以实现了管理员控制User在不同空间中切换。</p>
+<p><span style="color:red"> <strong>需要注意的事情，切换用户到不同的空间的话需要确认 UserPreferenceEntity是否存在，如果不存在的话需要进行初始化操作</strong> </span></p>
+<h3 id="暂时只处理User-其他的管理项，提示切换到不同的空间中处理"><a href="#暂时只处理User-其他的管理项，提示切换到不同的空间中处理" class="headerlink" title="暂时只处理User 其他的管理项，提示切换到不同的空间中处理"></a>暂时只处理User 其他的管理项，提示切换到不同的空间中处理</h3><p>考虑优化，在header中标识出当前的空间</p>
+<p><img src="/images/pasted-51.png" alt="upload successful"></p>
+<h2 id="2、Workspace"><a href="#2、Workspace" class="headerlink" title="2、Workspace"></a>2、Workspace</h2><p>在管理页面新增一个Page就叫工作空间</p>
+<h3 id="一个集成页面"><a href="#一个集成页面" class="headerlink" title="一个集成页面"></a>一个集成页面</h3><p>页面功能如下图所示。<br>查询出当前公司下面所有的工作空间，然后可以进行创建和更新，还可以针对当前的工作空间进行App的创建和更新。</p>
+<p><img src="/images/pasted-52.png" alt="upload successful"></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-04-04T17:29:00+08:00"
-              content="2023-04-04">
-          04-04
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/04/04/%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%9C%E8%A5%BF/" itemprop="url">
-            <span itemprop="name">缓存相关的东西</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/07/27/MEPER-Cloud-%E8%AE%A1%E5%88%92/" rel="prev" title="MEPER-Cloud 计划">
+      <i class="fa fa-chevron-left"></i> MEPER-Cloud 计划
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -277,6 +339,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81User"><span class="nav-number">1.</span> <span class="nav-text">1、User</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2user"><span class="nav-number">1.1.</span> <span class="nav-text">查询user</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-x2F-%E6%9B%B4%E6%96%B0User"><span class="nav-number">1.2.</span> <span class="nav-text">创建&#x2F;更新User</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9A%82%E6%97%B6%E5%8F%AA%E5%A4%84%E7%90%86User-%E5%85%B6%E4%BB%96%E7%9A%84%E7%AE%A1%E7%90%86%E9%A1%B9%EF%BC%8C%E6%8F%90%E7%A4%BA%E5%88%87%E6%8D%A2%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E7%A9%BA%E9%97%B4%E4%B8%AD%E5%A4%84%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">暂时只处理User 其他的管理项，提示切换到不同的空间中处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81Workspace"><span class="nav-number">2.</span> <span class="nav-text">2、Workspace</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E9%9B%86%E6%88%90%E9%A1%B5%E9%9D%A2"><span class="nav-number">2.1.</span> <span class="nav-text">一个集成页面</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
