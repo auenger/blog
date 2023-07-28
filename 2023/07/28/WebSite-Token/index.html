@@ -20,21 +20,19 @@
     var CONFIG = {"hostname":"imcoders.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="window server 产生 exe 文件服务的调整">
+  <meta name="description" content="由于当前的 Vue 网页的website 涉及同时调用两个服务，且不同服务的 Token 并不是统一的原因，所以当前需要针对的 website 的 Token 问题进行重构优化。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="App生成服务">
-<meta property="og:url" content="http://imcoders.cn/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/index.html">
+<meta property="og:title" content="WebSite-Token">
+<meta property="og:url" content="http://imcoders.cn/2023/07/28/WebSite-Token/index.html">
 <meta property="og:site_name" content="I-Coder">
-<meta property="og:description" content="window server 产生 exe 文件服务的调整">
+<meta property="og:description" content="由于当前的 Vue 网页的website 涉及同时调用两个服务，且不同服务的 Token 并不是统一的原因，所以当前需要针对的 website 的 Token 问题进行重构优化。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://imcoders.cn/images/pasted-22.png">
-<meta property="article:published_time" content="2023-07-21T16:46:25.000Z">
-<meta property="article:modified_time" content="2023-07-21T17:11:40.085Z">
+<meta property="article:published_time" content="2023-07-28T08:07:11.000Z">
+<meta property="article:modified_time" content="2023-07-28T08:57:51.178Z">
 <meta property="article:author" content="Ryan Yang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://imcoders.cn/images/pasted-22.png">
 
-<link rel="canonical" href="http://imcoders.cn/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/">
+<link rel="canonical" href="http://imcoders.cn/2023/07/28/WebSite-Token/">
 
 
 <script id="page-configurations">
@@ -47,7 +45,7 @@
   };
 </script>
 
-  <title>App生成服务 | I-Coder</title>
+  <title>WebSite-Token | I-Coder</title>
   
 
 
@@ -193,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/">
+    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/07/28/WebSite-Token/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo_b.jpeg">
@@ -206,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          App生成服务
+          WebSite-Token
         </h1>
 
         <div class="post-meta">
@@ -217,7 +215,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-07-22 00:46:25 / 修改时间：01:11:40" itemprop="dateCreated datePublished" datetime="2023-07-22T00:46:25+08:00">2023-07-22</time>
+              <time title="创建时间：2023-07-28 16:07:11 / 修改时间：16:57:51" itemprop="dateCreated datePublished" datetime="2023-07-28T16:07:11+08:00">2023-07-28</time>
             </span>
 
           
@@ -229,8 +227,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/07/28/WebSite-Token/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/28/WebSite-Token/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,16 +243,38 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>window server 产生 exe 文件服务的调整</p>
+        <p>由于当前的 Vue 网页的website 涉及同时调用两个服务，且不同服务的 Token 并不是统一的原因，所以当前需要针对的 website 的 Token 问题进行重构优化。</p>
 <span id="more"></span>
 
-<h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>打包生成的 exe 脚本执行需要windows server 环境，最初的设计是重新封装一个 springboot 服务进行打包，不熟到 windows server 服务器，但是考虑到没必要进行太多次的网络请求，浪费流量成本和网络时间开销，所以目前重新设计，将打包 exe 逻辑接口迁移到 MEPER 服务中， MEPER 暂定部署两个节点，一个 docker  Linux 节点，一个 windows server 节点。</p>
-<h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><p>将打包 exe 脚本接口迁移到 MEPER 中，然后将 portal 调用 MEPER 的接口分成两部分，直接配置指向对应 IP，将 project 打包导出文件接口和 App 封包 exe 接口都去请求Windows server 的服务，则对应产生的 App 数据包和对应的 Inno setup 脚本都在同一个 windows server 服务器，进一步减少网络开销，且当前 windows server 的 MEPER 只去处理文件相关的接口，减轻对应的业务逻辑。</p>
-<h2 id="逻辑时序图"><a href="#逻辑时序图" class="headerlink" title="逻辑时序图"></a>逻辑时序图</h2><p><img src="/images/pasted-22.png" alt="upload successful"></p>
-<h2 id="需求明细"><a href="#需求明细" class="headerlink" title="需求明细"></a>需求明细</h2><h3 id="1、接口迁移"><a href="#1、接口迁移" class="headerlink" title="1、接口迁移"></a>1、接口迁移</h3><p>把之前的 spring boot 逻辑迁移到 MEPER 服务，新开放 http 接口处理打包业务。</p>
-<h3 id="2、处理-App-导出数据包存储的逻辑"><a href="#2、处理-App-导出数据包存储的逻辑" class="headerlink" title="2、处理 App 导出数据包存储的逻辑"></a>2、处理 App 导出数据包存储的逻辑</h3><p>之前的打包文件的 package 逻辑对应的文件路径重新整理逻辑。</p>
-<h3 id="3、初始化项目接口获取-App-数据包"><a href="#3、初始化项目接口获取-App-数据包" class="headerlink" title="3、初始化项目接口获取 App 数据包"></a>3、初始化项目接口获取 App 数据包</h3><p>优化创建 project 的逻辑，根据 Appid 获取对应 jbf 数据包，优化数据备份接口，还有项目初始化过程中的数据初始化 Task，兼容新的.MEPERApp (gzip,zip)文件。</p>
-<h3 id="4、portal-的-fegin接口整理"><a href="#4、portal-的-fegin接口整理" class="headerlink" title="4、portal 的 fegin接口整理"></a>4、portal 的 fegin接口整理</h3><p>处理portal 的 fegin 接口，对应请求打包文件相关的接口独立区分开。</p>
+<h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>最初的设计是 Vue 的 website 所有请求都是从 Portalserver 请求的，所以当时设计的是只需要在请求的接口中加上 portal 的 Token，然后在跳转 MEPER-Cloud 的时候才需要将当前的 cookie 中写入 <span style="color:red"><strong>MEPER-Token</strong></span> 进行	跳转就好了， 所以我们在用户登录 portal 获取 Token 的时候已经将对应的 MEPERToken获取到了并存储到数据库中。</p>
+<p>但是现在 Website 上面的调用了portal 的相关注册和认证接口，但是涉及到 MEPER-Cloud 的接口的话直接调用 MEPER，这样的话就涉及到需要前端在请求的过程中加上 <span style="color:red"><strong>MEPER-Token</strong></span> 的对应 Token在 header 中保证请求的成功。</p>
+<h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><p>Portal 和 MEPER-Cloud 的服务框架都是基于 Appbase framework 的，所以对于 Token 的认证都是去获取当前的 cookie 中的 <span style="color:red"><strong>MEPER-Token</strong></span>，当跨域的情况下，cookie 无法传递的情况下， 需要从当前请求的 Request 的 header 中找MEPER-TOKEN。</p>
+<p>所以在前端调用不同服务的接口的时候，需要给header 中的MEPER-TOKEN指定对应的服务的 Token 赋值。</p>
+<h2 id="需求设计"><a href="#需求设计" class="headerlink" title="需求设计"></a>需求设计</h2><h3 id="Potal-server"><a href="#Potal-server" class="headerlink" title="Potal server"></a>Potal server</h3><h4 id="Portal-server登录接口"><a href="#Portal-server登录接口" class="headerlink" title="Portal server登录接口"></a>Portal server登录接口</h4><p>用户登录的时候需要判断当前的用户是否是 SI 而且是否进行了企业认证，并且企业认证审核通过了。</p>
+<blockquote>
+<p>企业没有认证</p>
+</blockquote>
+<p>1、若是企业认证没有审核通过的，那么 MEPER-Cloud 此时还没有当前的用户的对应信息，所以没有办法获取对应的MEPER-TOKEN。</p>
+<blockquote>
+<p>企业认证通过</p>
+</blockquote>
+<p>2、企业认证通过的的 SI 此时的用户信息已经同步到 MEPER-Cloud 了。用户通过Portal 的登录接口进行登录的时候，Portal 从 MEPER 获取对应 User 的 Token 并存储。</p>
+<blockquote>
+<p>登录成功Response</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Response</span><br><span class="line">&#123;</span><br><span class="line">    Portal-Token:&quot;肯定有&quot;,</span><br><span class="line">    Meper-Token:&quot;企业认证之后的有&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Vue-Website"><a href="#Vue-Website" class="headerlink" title="Vue Website"></a>Vue Website</h3><h4 id="Member-ts-登录"><a href="#Member-ts-登录" class="headerlink" title="Member.ts 登录"></a>Member.ts 登录</h4><p>用户登录请求成功返回后，需要在当前的 Cookie 中存储对应的 Portal-Token 和 Meper-Token。</p>
+<h4 id="页面加载"><a href="#页面加载" class="headerlink" title="页面加载"></a>页面加载</h4><p>每个 Vue 页面加载的时候都需要去校验当前的 cookie 中是否包含必要的 Token，若是已经企业认证通过的用户，则两个 Token 都是必要的。</p>
+<h4 id="Member-ts-x2F-Workspace-ts"><a href="#Member-ts-x2F-Workspace-ts" class="headerlink" title="Member.ts&#x2F;Workspace.ts"></a>Member.ts&#x2F;Workspace.ts</h4><blockquote>
+<p>member.ts</p>
+</blockquote>
+<p>member.ts 定义的相关需要带着 Token 的请求需要将 header 中带上 portal-Token，从 Cookie 中获取到 Portal-Token 给 Header中的 <span style="color:red"><strong>MEPER-Token</strong></span> 赋值。</p>
+<blockquote>
+<p>workspace.ts</p>
+</blockquote>
+<p>workspace.ts 中定义的请求是直接请求到 MEPER-Cloud 服务的，所以在请求的过程中需要给 Header中的<span style="color:red"><strong>MEPER-Token</strong></span>赋值，从 cookie 中获取 Meper-Token 进行赋值。</p>
+<h4 id="跳转-MEPER-Cloud"><a href="#跳转-MEPER-Cloud" class="headerlink" title="跳转 MEPER-Cloud"></a>跳转 MEPER-Cloud</h4><p>进入空间的话，需要将当前浏览器的 Cookie 中的<span style="color:red"><strong>MEPER-Token</strong></span>赋值为 Meper-Token 的值。然后浏览器可以直接跳转对应的 MEPER-Cloud的 Vaadin 页面。</p>
 
     </div>
 
@@ -270,13 +290,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/07/22/Vue%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E4%BB%BB%E5%8A%A1/" rel="prev" title="前端页面任务">
-      <i class="fa fa-chevron-left"></i> 前端页面任务
+    <a href="/2023/07/27/MEPER-Cloud%E9%A1%B5%E9%9D%A2%E6%94%B9%E9%80%A0/" rel="prev" title="MEPER-Cloud页面改造">
+      <i class="fa fa-chevron-left"></i> MEPER-Cloud页面改造
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/07/22/MEPER-License/" rel="next" title="MEPER License">
-      MEPER License <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -336,7 +353,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">需求背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">需求说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="nav-number">3.</span> <span class="nav-text">逻辑时序图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E6%98%8E%E7%BB%86"><span class="nav-number">4.</span> <span class="nav-text">需求明细</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%8E%A5%E5%8F%A3%E8%BF%81%E7%A7%BB"><span class="nav-number">4.1.</span> <span class="nav-text">1、接口迁移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%A4%84%E7%90%86-App-%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E5%8C%85%E5%AD%98%E5%82%A8%E7%9A%84%E9%80%BB%E8%BE%91"><span class="nav-number">4.2.</span> <span class="nav-text">2、处理 App 导出数据包存储的逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE%E6%8E%A5%E5%8F%A3%E8%8E%B7%E5%8F%96-App-%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="nav-number">4.3.</span> <span class="nav-text">3、初始化项目接口获取 App 数据包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81portal-%E7%9A%84-fegin%E6%8E%A5%E5%8F%A3%E6%95%B4%E7%90%86"><span class="nav-number">4.4.</span> <span class="nav-text">4、portal 的 fegin接口整理</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">需求背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">需求说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">需求设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Potal-server"><span class="nav-number">3.1.</span> <span class="nav-text">Potal server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Portal-server%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.1.1.</span> <span class="nav-text">Portal server登录接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-Website"><span class="nav-number">3.2.</span> <span class="nav-text">Vue Website</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Member-ts-%E7%99%BB%E5%BD%95"><span class="nav-number">3.2.1.</span> <span class="nav-text">Member.ts 登录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD"><span class="nav-number">3.2.2.</span> <span class="nav-text">页面加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Member-ts-x2F-Workspace-ts"><span class="nav-number">3.2.3.</span> <span class="nav-text">Member.ts&#x2F;Workspace.ts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%B3%E8%BD%AC-MEPER-Cloud"><span class="nav-number">3.2.4.</span> <span class="nav-text">跳转 MEPER-Cloud</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
