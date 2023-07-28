@@ -27,10 +27,12 @@
 <meta property="og:site_name" content="I-Coder">
 <meta property="og:description" content="由于当前的 Vue 网页的website 涉及同时调用两个服务，且不同服务的 Token 并不是统一的原因，所以当前需要针对的 website 的 Token 问题进行重构优化。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://imcoders.cn/images/pasted-53.png">
 <meta property="article:published_time" content="2023-07-28T08:07:11.000Z">
-<meta property="article:modified_time" content="2023-07-28T08:57:51.178Z">
+<meta property="article:modified_time" content="2023-07-28T09:07:02.816Z">
 <meta property="article:author" content="Ryan Yang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://imcoders.cn/images/pasted-53.png">
 
 <link rel="canonical" href="http://imcoders.cn/2023/07/28/WebSite-Token/">
 
@@ -215,7 +217,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-07-28 16:07:11 / 修改时间：16:57:51" itemprop="dateCreated datePublished" datetime="2023-07-28T16:07:11+08:00">2023-07-28</time>
+              <time title="创建时间：2023-07-28 16:07:11 / 修改时间：17:07:02" itemprop="dateCreated datePublished" datetime="2023-07-28T16:07:11+08:00">2023-07-28</time>
             </span>
 
           
@@ -246,11 +248,12 @@
         <p>由于当前的 Vue 网页的website 涉及同时调用两个服务，且不同服务的 Token 并不是统一的原因，所以当前需要针对的 website 的 Token 问题进行重构优化。</p>
 <span id="more"></span>
 
-<h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>最初的设计是 Vue 的 website 所有请求都是从 Portalserver 请求的，所以当时设计的是只需要在请求的接口中加上 portal 的 Token，然后在跳转 MEPER-Cloud 的时候才需要将当前的 cookie 中写入 <span style="color:red"><strong>MEPER-Token</strong></span> 进行	跳转就好了， 所以我们在用户登录 portal 获取 Token 的时候已经将对应的 MEPERToken获取到了并存储到数据库中。</p>
-<p>但是现在 Website 上面的调用了portal 的相关注册和认证接口，但是涉及到 MEPER-Cloud 的接口的话直接调用 MEPER，这样的话就涉及到需要前端在请求的过程中加上 <span style="color:red"><strong>MEPER-Token</strong></span> 的对应 Token在 header 中保证请求的成功。</p>
-<h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><p>Portal 和 MEPER-Cloud 的服务框架都是基于 Appbase framework 的，所以对于 Token 的认证都是去获取当前的 cookie 中的 <span style="color:red"><strong>MEPER-Token</strong></span>，当跨域的情况下，cookie 无法传递的情况下， 需要从当前请求的 Request 的 header 中找MEPER-TOKEN。</p>
+<h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>最初的设计是 Vue 的 website 所有请求都是从 Portalserver 请求的，所以当时设计的是只需要在请求的接口中加上 portal 的 Token，然后在跳转 MEPER-Cloud 的时候才需要将当前的 cookie 中写入 <span style="color:red"><strong>MEPER-TOKEN</strong></span> 进行	跳转就好了， 所以我们在用户登录 portal 获取 Token 的时候已经将对应的 MEPERToken获取到了并存储到数据库中。</p>
+<p>但是现在 Website 上面的调用了portal 的相关注册和认证接口，但是涉及到 MEPER-Cloud 的接口的话直接调用 MEPER，这样的话就涉及到需要前端在请求的过程中加上 <span style="color:red"><strong>MEPER-TOKEN</strong></span> 的对应 Token在 header 中保证请求的成功。</p>
+<h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><p>Portal 和 MEPER-Cloud 的服务框架都是基于 Appbase framework 的，所以对于 Token 的认证都是去获取当前的 cookie 中的 <span style="color:red"><strong>MEPER-TOKEN</strong></span>，当跨域的情况下，cookie 无法传递的情况下， 需要从当前请求的 Request 的 header 中找MEPER-TOKEN。</p>
 <p>所以在前端调用不同服务的接口的时候，需要给header 中的MEPER-TOKEN指定对应的服务的 Token 赋值。</p>
-<h2 id="需求设计"><a href="#需求设计" class="headerlink" title="需求设计"></a>需求设计</h2><h3 id="Potal-server"><a href="#Potal-server" class="headerlink" title="Potal server"></a>Potal server</h3><h4 id="Portal-server登录接口"><a href="#Portal-server登录接口" class="headerlink" title="Portal server登录接口"></a>Portal server登录接口</h4><p>用户登录的时候需要判断当前的用户是否是 SI 而且是否进行了企业认证，并且企业认证审核通过了。</p>
+<h2 id="需求设计"><a href="#需求设计" class="headerlink" title="需求设计"></a>需求设计</h2><p><img src="/images/pasted-53.png" alt="upload successful"></p>
+<h3 id="Potal-server"><a href="#Potal-server" class="headerlink" title="Potal server"></a>Potal server</h3><h4 id="Portal-server登录接口"><a href="#Portal-server登录接口" class="headerlink" title="Portal server登录接口"></a>Portal server登录接口</h4><p>用户登录的时候需要判断当前的用户是否是 SI 而且是否进行了企业认证，并且企业认证审核通过了。</p>
 <blockquote>
 <p>企业没有认证</p>
 </blockquote>
@@ -269,12 +272,12 @@
 <h4 id="Member-ts-x2F-Workspace-ts"><a href="#Member-ts-x2F-Workspace-ts" class="headerlink" title="Member.ts&#x2F;Workspace.ts"></a>Member.ts&#x2F;Workspace.ts</h4><blockquote>
 <p>member.ts</p>
 </blockquote>
-<p>member.ts 定义的相关需要带着 Token 的请求需要将 header 中带上 portal-Token，从 Cookie 中获取到 Portal-Token 给 Header中的 <span style="color:red"><strong>MEPER-Token</strong></span> 赋值。</p>
+<p>member.ts 定义的相关需要带着 Token 的请求需要将 header 中带上 portal-Token，从 Cookie 中获取到 Portal-Token 给 Header中的 <span style="color:red"><strong>MEPER-TOKEN</strong></span> 赋值。</p>
 <blockquote>
 <p>workspace.ts</p>
 </blockquote>
-<p>workspace.ts 中定义的请求是直接请求到 MEPER-Cloud 服务的，所以在请求的过程中需要给 Header中的<span style="color:red"><strong>MEPER-Token</strong></span>赋值，从 cookie 中获取 Meper-Token 进行赋值。</p>
-<h4 id="跳转-MEPER-Cloud"><a href="#跳转-MEPER-Cloud" class="headerlink" title="跳转 MEPER-Cloud"></a>跳转 MEPER-Cloud</h4><p>进入空间的话，需要将当前浏览器的 Cookie 中的<span style="color:red"><strong>MEPER-Token</strong></span>赋值为 Meper-Token 的值。然后浏览器可以直接跳转对应的 MEPER-Cloud的 Vaadin 页面。</p>
+<p>workspace.ts 中定义的请求是直接请求到 MEPER-Cloud 服务的，所以在请求的过程中需要给 Header中的<span style="color:red"><strong>MEPER-TOKEN</strong></span>赋值，从 cookie 中获取 Meper-Token 进行赋值。</p>
+<h4 id="跳转-MEPER-Cloud"><a href="#跳转-MEPER-Cloud" class="headerlink" title="跳转 MEPER-Cloud"></a>跳转 MEPER-Cloud</h4><p>进入空间的话，需要将当前浏览器的 Cookie 中的<span style="color:red"><strong>MEPER-TOKEN</strong></span>赋值为 Meper-Token 的值。然后浏览器可以直接跳转对应的 MEPER-Cloud的 Vaadin 页面。</p>
 
     </div>
 
