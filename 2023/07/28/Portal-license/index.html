@@ -20,19 +20,22 @@
     var CONFIG = {"hostname":"imcoders.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="整理一下整体的调用链路和设计。 目前整理流程暂时分为四个服务  WebsitePortalLinux MEPERWindow MEPER">
+  <meta name="description" content="Portal server 中需要新增一个 license 中间表，用户管理员审核状态和中间表。用户可以通过中间表的 CompanyId 和 AppId 去 licensesevere 获取对应的 license 文件。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue Portal MEPER调用关系">
-<meta property="og:url" content="http://imcoders.cn/2023/07/26/Vue-Portal-MEPER%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB/index.html">
+<meta property="og:title" content="Portal-license">
+<meta property="og:url" content="http://imcoders.cn/2023/07/28/Portal-license/index.html">
 <meta property="og:site_name" content="I-Coder">
-<meta property="og:description" content="整理一下整体的调用链路和设计。 目前整理流程暂时分为四个服务  WebsitePortalLinux MEPERWindow MEPER">
+<meta property="og:description" content="Portal server 中需要新增一个 license 中间表，用户管理员审核状态和中间表。用户可以通过中间表的 CompanyId 和 AppId 去 licensesevere 获取对应的 license 文件。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-26T09:44:00.000Z">
-<meta property="article:modified_time" content="2023-07-26T09:44:06.579Z">
+<meta property="og:image" content="http://imcoders.cn/images/pasted-54.png">
+<meta property="og:image" content="http://imcoders.cn/images/pasted-55.png">
+<meta property="article:published_time" content="2023-07-28T09:43:59.000Z">
+<meta property="article:modified_time" content="2023-07-29T02:47:43.100Z">
 <meta property="article:author" content="Ryan Yang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://imcoders.cn/images/pasted-54.png">
 
-<link rel="canonical" href="http://imcoders.cn/2023/07/26/Vue-Portal-MEPER%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB/">
+<link rel="canonical" href="http://imcoders.cn/2023/07/28/Portal-license/">
 
 
 <script id="page-configurations">
@@ -45,7 +48,7 @@
   };
 </script>
 
-  <title>Vue Portal MEPER调用关系 | I-Coder</title>
+  <title>Portal-license | I-Coder</title>
   
 
 
@@ -191,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/07/26/Vue-Portal-MEPER%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB/">
+    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/07/28/Portal-license/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo_b.jpeg">
@@ -204,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Vue Portal MEPER调用关系
+          Portal-license
         </h1>
 
         <div class="post-meta">
@@ -213,10 +216,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-07-26 17:44:00 / 修改时间：17:44:06" itemprop="dateCreated datePublished" datetime="2023-07-26T17:44:00+08:00">2023-07-26</time>
+              <time title="创建时间：2023-07-28 17:43:59" itemprop="dateCreated datePublished" datetime="2023-07-28T17:43:59+08:00">2023-07-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-29 10:47:43" itemprop="dateModified" datetime="2023-07-29T10:47:43+08:00">2023-07-29</time>
+              </span>
 
           
   
@@ -227,8 +236,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/07/26/Vue-Portal-MEPER%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/26/Vue-Portal-MEPER%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/07/28/Portal-license/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/28/Portal-license/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -243,67 +252,66 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>整理一下整体的调用链路和设计。</p>
-<p>目前整理流程暂时分为四个服务</p>
-<blockquote>
-<p>Website<br>Portal<br>Linux MEPER<br>Window MEPER</p>
-</blockquote>
+        <p>Portal server 中需要新增一个 license 中间表，用户管理员审核状态和中间表。用户可以通过中间表的 CompanyId 和 AppId 去 licensesevere 获取对应的 license 文件。</p>
 <span id="more"></span>
 
-<h2 id="Vue-Website"><a href="#Vue-Website" class="headerlink" title="Vue Website"></a>Vue Website</h2><p>首先确认Website大概有多少的调用请求</p>
-<h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><blockquote>
-<p>Portal</p>
+<h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>用户根据当前选择的 App 去申请相关的license。license server 出于安全考虑除了在线校验接口之外的所有接口应该从 Portalserver 进行转发，从而让Portal 根据 token 进行权限的验证和限制。而且目前设计的 license 的下发也是需要经过人员的审核和沟通的，所以需要有一个中间状态还有需要有一个的中间表，去存储App 和 license 之间的关系，不需要所有的请求都直接到 license server 获取数据。</p>
+<h2 id="模型设计"><a href="#模型设计" class="headerlink" title="模型设计"></a>模型设计</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">license</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">// 申请公司</span><br><span class="line">private String companyId；</span><br><span class="line"></span><br><span class="line">// 对应申请的 App</span><br><span class="line">private String appId；</span><br><span class="line"></span><br><span class="line">// 包含的套件（Base,WMS,MES）</span><br><span class="line">private List&lt;String&gt; types;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">* 有效期</span><br><span class="line">* 有效期为3个月：Valid for 3 months</span><br><span class="line">* 有效期为6个月：Valid for 6 months</span><br><span class="line">* 有效期为12个月：Valid for 12 months</span><br><span class="line">* 永久有效：Permanent</span><br><span class="line">*/</span><br><span class="line">private String validityPeriod;</span><br><span class="line"></span><br><span class="line">// 审核的状态</span><br><span class="line">private String status;</span><br><span class="line"></span><br><span class="line">// 备注信息</span><br><span class="line">private String remark;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">创建更新时间什么的基础字段</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="逻辑设计"><a href="#逻辑设计" class="headerlink" title="逻辑设计"></a>逻辑设计</h2><p>用户通过 App 跳转到 license 申请页面如下图（图片仅为设计原型和样式，不代表最终业务逻辑）</p>
+<p><img src="/images/pasted-54.png" alt="upload successful"></p>
+<p>用户选择完最后的套件（Base，MES,WMS）和有效期时效之后提交申请。</p>
+<p>我们收到请求之后可以进行人工审核和沟通，最后修改申请状态。当申请状态为申请通过后，用户可以通过页面直接进行 license 文件下载。</p>
+<h3 id="业务逻辑"><a href="#业务逻辑" class="headerlink" title="业务逻辑"></a>业务逻辑</h3><blockquote>
+<p>1、用户页面选择 App 进入 license 申请<br>2、用户选择套件和有效期提交申请<br>3、管理员通过沟通后审核通过<br>4、用户可以直接从 license 管理页面进行下载</p>
 </blockquote>
-<p>用户注册逻辑，请求设计是Website请求到Portal，注册成一个用户，需要继续进行引导去做企业认证。</p>
-<p>需要处理的点是，如果是用户没有进行企业认证的话，或者没有认证审核通过的话，不能直接通过MEPER登录，也就是说MEPER的用户需要在当前的用户进行了企业认证而且在企业认证审核通过之后才可以登录。</p>
-<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><blockquote>
-<p>Portal</p>
+<h3 id="服务调用逻辑"><a href="#服务调用逻辑" class="headerlink" title="服务调用逻辑"></a>服务调用逻辑</h3><p><img src="/images/pasted-55.png" alt="upload successful"></p>
+<p>portal 服务请求 license 服务的相关参数，主要根据 CompanyId 和 AppId 确定唯一的 license，然后license 校验的相关逻辑需要针对套件的 types。</p>
+<p>根据当前的逻辑设计，那么每个公司对应每个 App 只有一个 license，后续需要进行更新相关的套件拓展的话，还需要针对当前的 license 进行拓展申请，这个后面再继续完善设计。</p>
+<h2 id="需求切分"><a href="#需求切分" class="headerlink" title="需求切分"></a>需求切分</h2><h3 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h3><blockquote>
+<p>1、申请 license 页面的Vue。</p>
 </blockquote>
-<p>用户登录到Portal进行一些简单的信息查看和跳转等等， 但是在没有进行企业认证的情况下，没有办法进行下载和其他的操作。</p>
-<p>如果点击了相关下载功能等，需要进行跳转和引导进行企业认证。</p>
-<p>需要处理的点，目前如果是从Portal登录后，会自动去MEPER调用登录接口，请求MEPER的token，这一块需要加一个判断进行处理，如果没有企业认证的话，不需要拿token。</p>
-<h3 id="更新用户信息"><a href="#更新用户信息" class="headerlink" title="更新用户信息"></a>更新用户信息</h3><blockquote>
-<p>Portal</p>
-</blockquote>
-<p>更新用户的基本信息，目前用户名是不支持更新的，即使后期可以改，也要进行唯一性验证。</p>
-<h3 id="企业认证"><a href="#企业认证" class="headerlink" title="企业认证"></a>企业认证</h3><blockquote>
-<p>Portal</p>
-</blockquote>
-<p>注册公司信息，还是仅仅在Portal中处理这部分逻辑，创建公司信息还是在Portal处理。</p>
-<h3 id="更新企业信息"><a href="#更新企业信息" class="headerlink" title="更新企业信息"></a>更新企业信息</h3><blockquote>
-<p>Portal</p>
-</blockquote>
-<p>更新注册的公司信息还是在Portal包括管理员进行审核和状态变更。</p>
 <blockquote>
-<p>Linux MEPER</p>
+<p>2、调用 Meper 获取当前 App 信息。</p>
 </blockquote>
-<p>需要处理的点，当企业认证信息被审核通过后，才去MEPER进行信息的同步，也就是企业认证审核通过后用户才可以通过MEPER的链接直接进行登录操作</p>
-<h3 id="创建工作空间"><a href="#创建工作空间" class="headerlink" title="创建工作空间"></a>创建工作空间</h3><p>逻辑变更后，创建工作空间的请求直接到MEPER。</p>
 <blockquote>
-<p>Window MEPER</p>
+<p>3、请求 Portal 创建</p>
 </blockquote>
-<p>需要处理和确认的点<br>请求到MEPER的时候需要先获取到MEPER的token，然后才能去请求的MEPER的接口，还有一点，请求的参数中的UserId或者CompanyId的信息，需要使用的是MEPER表里面的对应的ID。</p>
-<h3 id="更新工作空间"><a href="#更新工作空间" class="headerlink" title="更新工作空间"></a>更新工作空间</h3><blockquote>
-<p>Linux MEPER</p>
+<blockquote>
+<p>4、查询 license 的列表页面</p>
 </blockquote>
-<p>同上直接请求MEPER的接口，需要注意在header中拼装上对应的token调用。</p>
-<h3 id="查询工作空间"><a href="#查询工作空间" class="headerlink" title="查询工作空间"></a>查询工作空间</h3><blockquote>
-<p>Linux MEPER</p>
+<blockquote>
+<p>5、查询 license 的 info 页面</p>
 </blockquote>
-<h3 id="创建App"><a href="#创建App" class="headerlink" title="创建App"></a>创建App</h3><blockquote>
-<p>Window MEPER</p>
+<blockquote>
+<p>6、查询 portal 的 license 的接口</p>
 </blockquote>
-<h3 id="更新App"><a href="#更新App" class="headerlink" title="更新App"></a>更新App</h3><blockquote>
-<p>Linux MEPER</p>
+<blockquote>
+<p>7、请求 portal 的下载 license 接口</p>
 </blockquote>
-<h3 id="查询App"><a href="#查询App" class="headerlink" title="查询App"></a>查询App</h3><blockquote>
-<p>Linux MEPER</p>
+<h3 id="Meper"><a href="#Meper" class="headerlink" title="Meper"></a>Meper</h3><blockquote>
+<p>1、接口返回当前 App 的信息（已有）</p>
 </blockquote>
-<h3 id="下载App"><a href="#下载App" class="headerlink" title="下载App"></a>下载App</h3><blockquote>
-<p>Window MEPER</p>
+<blockquote>
+<p>2、对应的pageEditor的套件标识信息。</p>
 </blockquote>
-<h3 id="拓展的App评论"><a href="#拓展的App评论" class="headerlink" title="拓展的App评论"></a>拓展的App评论</h3><blockquote>
-<p>Linux MEPER</p>
+<h3 id="Portal"><a href="#Portal" class="headerlink" title="Portal"></a>Portal</h3><blockquote>
+<p>1、一个 license 审核表，记录 license 申请的关键性数据和状态。</p>
+</blockquote>
+<blockquote>
+<p>2、针对这个 license 表的增删改查接口</p>
+</blockquote>
+<blockquote>
+<p>3、调用 license server 的 remote client 接口</p>
+</blockquote>
+<blockquote>
+<p>4、请求 license 的下载文件接口。</p>
+</blockquote>
+<h3 id="license"><a href="#license" class="headerlink" title="license"></a>license</h3><blockquote>
+<p>1、创建 license 接口</p>
+</blockquote>
+<blockquote>
+<p>2、下载 license 接口</p>
 </blockquote>
 
     </div>
@@ -320,13 +328,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/07/26/PageEditor%E6%95%B0%E6%8D%AE%E6%A0%87%E8%AF%86/" rel="prev" title="PageEditor数据标识">
-      <i class="fa fa-chevron-left"></i> PageEditor数据标识
+    <a href="/2023/07/28/WebSite-Token/" rel="prev" title="WebSite-Token">
+      <i class="fa fa-chevron-left"></i> WebSite-Token
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/07/27/MEPER-Cloud-%E8%AE%A1%E5%88%92/" rel="next" title="MEPER-Cloud 计划">
-      MEPER-Cloud 计划 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -386,7 +391,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Website"><span class="nav-number">1.</span> <span class="nav-text">Vue Website</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C"><span class="nav-number">1.1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">1.3.</span> <span class="nav-text">更新用户信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%81%E4%B8%9A%E8%AE%A4%E8%AF%81"><span class="nav-number">1.4.</span> <span class="nav-text">企业认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E4%BC%81%E4%B8%9A%E4%BF%A1%E6%81%AF"><span class="nav-number">1.5.</span> <span class="nav-text">更新企业信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4"><span class="nav-number">1.6.</span> <span class="nav-text">创建工作空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4"><span class="nav-number">1.7.</span> <span class="nav-text">更新工作空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4"><span class="nav-number">1.8.</span> <span class="nav-text">查询工作空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAApp"><span class="nav-number">1.9.</span> <span class="nav-text">创建App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0App"><span class="nav-number">1.10.</span> <span class="nav-text">更新App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2App"><span class="nav-number">1.11.</span> <span class="nav-text">查询App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDApp"><span class="nav-number">1.12.</span> <span class="nav-text">下载App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E7%9A%84App%E8%AF%84%E8%AE%BA"><span class="nav-number">1.13.</span> <span class="nav-text">拓展的App评论</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">需求背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">模型设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">逻辑设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="nav-number">3.1.</span> <span class="nav-text">业务逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E9%80%BB%E8%BE%91"><span class="nav-number">3.2.</span> <span class="nav-text">服务调用逻辑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%87%E5%88%86"><span class="nav-number">4.</span> <span class="nav-text">需求切分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue"><span class="nav-number">4.1.</span> <span class="nav-text">Vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Meper"><span class="nav-number">4.2.</span> <span class="nav-text">Meper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Portal"><span class="nav-number">4.3.</span> <span class="nav-text">Portal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#license"><span class="nav-number">4.4.</span> <span class="nav-text">license</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
