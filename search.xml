@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title>Vue-Page-Biz</title>
+      <link href="/2023/08/01/Vue-Page-Biz/"/>
+      <url>/2023/08/01/Vue-Page-Biz/</url>
+      
+        <content type="html"><![CDATA[<p>Vue网站的一些逻辑设计。</p><span id="more"></span><h2 id="token-的检查"><a href="#token-的检查" class="headerlink" title="token 的检查"></a>token 的检查</h2><h3 id="Cookie-参数检查"><a href="#Cookie-参数检查" class="headerlink" title="Cookie 参数检查"></a>Cookie 参数检查</h3><p>前端登录状态的检查，应该是 token 检查，当用户登录后，每次页面跳转或者加载的时候需要检查当前的 cookie 中是否包含了所有的必要参数，若是没有的话，清空其他参数，跳转登录页面。</p><h3 id="Meper-token"><a href="#Meper-token" class="headerlink" title="Meper token"></a>Meper token</h3><p>当用户跳转到 App 或者 MEPER 平台管理页面的话，检查当前说否有 MEPER-TOKEN 或者 Meper-TOKEN，若没有的话证明当前 User 没有进行企业认证或者企业认证没有被审核，跳转到企业认证页面。</p><h2 id="页面逻辑"><a href="#页面逻辑" class="headerlink" title="页面逻辑"></a>页面逻辑</h2><p><span style="color:red" > <strong>重点：</strong> </span> </p><blockquote><p>需要注意的是管理员页面按照我的设计应该是和普通的 SI 后台分开部署，直接就进行物理隔离，放用户不可能访问到页面，而不是通过前端的 router 去控制。</p></blockquote><h3 id="未登录状态"><a href="#未登录状态" class="headerlink" title="未登录状态"></a>未登录状态</h3><p>用户注册 -&gt; 用户登录 -&gt; 企业认证  -&gt; 企业审核</p><p>按照这四个逻辑进行， 页面的跳转先后逻辑。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>8-1Meper-Project</title>
+      <link href="/2023/08/01/8-1Meper-Project/"/>
+      <url>/2023/08/01/8-1Meper-Project/</url>
+      
+        <content type="html"><![CDATA[<p>最新调整一下目前的 Meper-Cloud 项目还需要进行的东西。</p><span id="more"></span><blockquote><p>1、生成 exe 的脚本汉化处理，一些语言描述类的都改成中文。</p></blockquote><blockquote><p>2、一些 exe 安装包处理</p></blockquote><blockquote><p>3、打包的Meper exe 中包含 Artemis 处理<br>可以尝试新建一个默认的实例，账号密码都默认，然后启动服务。</p></blockquote><blockquote><p>4、license 页面对接接口</p></blockquote><blockquote><p>5、meper-cloud 跨域接口已经处理好了，App 页面对接 Meper 接口</p></blockquote><blockquote><p>6、AGS的页面Summer 在处理 company 这部分，涉及到 Company 的审核</p></blockquote><blockquote><p>7、AGS 页面处理所有的 license 的</p></blockquote><blockquote><p>8、Meper 多租户的套件改造和初始化 Projet 的数据包准备</p></blockquote><h3 id="9、Vue前端逻辑设计"><a href="#9、Vue前端逻辑设计" class="headerlink" title="9、Vue前端逻辑设计"></a>9、Vue前端逻辑设计</h3><p>用户交互设计。</p><p>页面跳转逻辑。</p><p>登录跳转逻辑。</p><p>token 过期逻辑。</p><p>请求报错逻辑。</p><p>按钮功能设计逻辑。</p><h3 id="10、普通用户切换空间"><a href="#10、普通用户切换空间" class="headerlink" title="10、普通用户切换空间"></a>10、普通用户切换空间</h3><p>顺手需要把注册的 HTML 删除掉 拿掉切换空间中的创建空间。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Portal-license</title>
       <link href="/2023/07/28/Portal-license/"/>
       <url>/2023/07/28/Portal-license/</url>
@@ -82,19 +108,6 @@
     
     
     <entry>
-      <title>设计页面引导访问</title>
-      <link href="/2023/07/24/%E8%AE%BE%E8%AE%A1%E9%A1%B5%E9%9D%A2%E5%BC%95%E5%AF%BC%E8%AE%BF%E9%97%AE/"/>
-      <url>/2023/07/24/%E8%AE%BE%E8%AE%A1%E9%A1%B5%E9%9D%A2%E5%BC%95%E5%AF%BC%E8%AE%BF%E9%97%AE/</url>
-      
-        <content type="html"><![CDATA[<p>MEPER 的设计页面引导访问的流程设计。</p><p>简单设计一个流程然后后面再针对功能进行设计其他引导。</p><span id="more"></span><p><img src="/images/pasted-27.png" alt="upload successful"></p><p>针对当前设计页面做一套引导。</p><h2 id="进入页面后，先介绍几大块。"><a href="#进入页面后，先介绍几大块。" class="headerlink" title="进入页面后，先介绍几大块。"></a>进入页面后，先介绍几大块。</h2><p>1、页面左上角的标题 ，简单描述一下左上角显示的是哪些内容，还意义</p><p><img src="/images/pasted-25.png" alt="upload successful"></p><p>2、介绍 Header 中间几个按钮的功能和具体的意义</p><p><img src="/images/pasted-26.png" alt="upload successful"></p><p>3、介绍左侧组件列表</p><p><img src="/images/pasted-28.png" alt="upload successful"></p><p>4、介绍左侧组件库</p><p><img src="/images/pasted-29.png" alt="upload successful"></p><p>5、介绍页面中间的核心设计块</p><p><img src="/images/pasted-30.png" alt="upload successful"></p><p>6、介绍中心块的设计和流程按钮</p><p><img src="/images/pasted-31.png" alt="upload successful"></p><p>7、右侧的属性模块</p><p><img src="/images/pasted-32.png" alt="upload successful"></p><p><strong>以上的介绍都是需要高亮介绍模块</strong></p><h2 id="进行一个细节引导"><a href="#进行一个细节引导" class="headerlink" title="进行一个细节引导"></a>进行一个细节引导</h2><p>以下的引导不需要进行高亮的。只要用户一边操作一边引导。</p><p>1、引导用户点击组件库的布局按钮</p><p><img src="/images/pasted-33.png" alt="upload successful"></p><p>2、引导用户拖动一个水平布局到设计模块</p><p><img src="/images/pasted-34.png" alt="upload successful"></p><p>3、引导用户点击组件库的基础按钮</p><p><img src="/images/pasted-35.png" alt="upload successful"></p><p>4、引导用户拖动一个表格组件进入水平布局</p><p><img src="/images/pasted-36.png" alt="upload successful"></p><p>5、引导用户点击设计块中的表格组件</p><p><img src="/images/pasted-37.png" alt="upload successful"></p><p>6、引导用户在右侧功能栏中点击数据源</p><p><img src="/images/pasted-38.png" alt="upload successful"><br>7、引导用户点击绑定数据源</p><p><img src="/images/pasted-39.png" alt="upload successful"></p><p>8、引导用户绑定一个数据源</p><p><img src="/images/pasted-40.png" alt="upload successful"></p><p>9 引导用户点击绑定系统对象</p><p><img src="/images/pasted-41.png" alt="upload successful"><br>10、选择 User</p><p><img src="/images/pasted-42.png" alt="upload successful"><br>11、保存</p><p><img src="/images/pasted-43.png" alt="upload successful"><br>12、点击生成子项目</p><p><img src="/images/pasted-44.png" alt="upload successful"><br>13、选择getname 并输入 文本</p><p><img src="/images/pasted-45.png" alt="upload successful"><br>14、点击保存按钮</p><p><img src="/images/pasted-46.png" alt="upload successful"><br>15、点击 header 保存按钮</p><p><img src="/images/pasted-47.png" alt="upload successful"><br>16、点击 header 预览按钮</p><p><img src="/images/pasted-48.png" alt="upload successful"></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>MEPER License</title>
       <link href="/2023/07/22/MEPER-License/"/>
       <url>/2023/07/22/MEPER-License/</url>
@@ -121,19 +134,6 @@
     
     
     <entry>
-      <title>前端页面任务</title>
-      <link href="/2023/07/22/Vue%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E4%BB%BB%E5%8A%A1/"/>
-      <url>/2023/07/22/Vue%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E4%BB%BB%E5%8A%A1/</url>
-      
-        <content type="html"><![CDATA[<p>需要专业前端帮忙一下。</p><span id="more"></span><h2 id="Home主页调整"><a href="#Home主页调整" class="headerlink" title="Home主页调整"></a>Home主页调整</h2><p>静态页面的调整 </p><p>Home 主页样式调整还有两个小功能地方调整。</p><a href="/2023/07/10/%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99%E5%8E%9F%E5%9E%8B/" title="门户网站原型">门户网站原型</a><h2 id="新页面"><a href="#新页面" class="headerlink" title="新页面"></a>新页面</h2><p><a href="https://mastergo.com/file/93555839967741?page_id=387:0411">MASTER Go原型设计页面</a></p><h3 id="1、产品介绍的WMS"><a href="#1、产品介绍的WMS" class="headerlink" title="1、产品介绍的WMS"></a>1、产品介绍的WMS</h3><p><img src="/images/pasted-18.png" alt="upload successful"><br> （图 1-2）</p><h3 id="2、产品下载"><a href="#2、产品下载" class="headerlink" title="2、产品下载"></a>2、产品下载</h3><p>分页组件不要了， 写一下 Table 样式和介绍</p><h3 id="3、应用详情页面"><a href="#3、应用详情页面" class="headerlink" title="3、应用详情页面"></a>3、应用详情页面</h3><p><img src="/images/pasted-19.png" alt="upload successful"><br>图 3</p><h3 id="4、产品介绍的-MES"><a href="#4、产品介绍的-MES" class="headerlink" title="4、产品介绍的 MES"></a>4、产品介绍的 MES</h3><p><img src="/images/pasted-20.png" alt="upload successful"><br>图 4</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>license试用接口</title>
       <link href="/2023/07/18/license%E8%AF%95%E7%94%A8%E6%8E%A5%E5%8F%A3/"/>
       <url>/2023/07/18/license%E8%AF%95%E7%94%A8%E6%8E%A5%E5%8F%A3/</url>
@@ -152,32 +152,6 @@
       <url>/2023/07/17/windows-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</url>
       
         <content type="html"><![CDATA[<p>windows 环境变量修改</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">立即生效环境变量：</span><br><span class="line">1、打开cmd输入： set PATH=C: </span><br><span class="line">2、关闭cmd </span><br><span class="line">3、重新打开cmd输入： echo %PATH%</span><br></pre></td></tr></table></figure><span id="more"></span><p>组要针对的问题是 MEPER 项目 node14</p><p>Vue的 website 项目是 node16所以打包的时候需要换 node 环境</p><p>npm 源镜像修改</p><blockquote><p>npm config get registry</p></blockquote><p>默认是指向 </p><blockquote><p><a href="https://registry.npmjs.org/">https://registry.npmjs.org/</a>  也就是官方源。</p></blockquote><p>修改成淘宝源</p><blockquote><p>npm config set registry <a href="https://registry.npmmirror.com/">https://registry.npmmirror.com/</a></p></blockquote>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>门户网站原型</title>
-      <link href="/2023/07/10/%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99%E5%8E%9F%E5%9E%8B/"/>
-      <url>/2023/07/10/%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99%E5%8E%9F%E5%9E%8B/</url>
-      
-        <content type="html"><![CDATA[<p>记录一下原型设计问题</p><span id="more"></span><h2 id="登录后-Header-的变化"><a href="#登录后-Header-的变化" class="headerlink" title="登录后 Header 的变化"></a>登录后 Header 的变化</h2><p><img src="/images/pasted-16.png" alt="upload successful"></p><h2 id="首页动画效果"><a href="#首页动画效果" class="headerlink" title="首页动画效果"></a>首页动画效果</h2><p>鼠标悬停 Hover 的时候会有一个透明度变化和放大的效果</p><p><img src="/images/pasted-17.png" alt="upload successful"></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>幕客确定</title>
-      <link href="/2023/07/04/%E5%B9%95%E5%AE%A2%E7%A1%AE%E5%AE%9A/"/>
-      <url>/2023/07/04/%E5%B9%95%E5%AE%A2%E7%A1%AE%E5%AE%9A/</url>
-      
-        <content type="html"><![CDATA[<p>设计原型中需要确认的点</p><span id="more"></span><h2 id="应用详情"><a href="#应用详情" class="headerlink" title="应用详情"></a>应用详情</h2><p><img src="/images/pasted-11.png" alt="upload successful"></p><blockquote><p>图 1</p></blockquote><p><img src="/images/pasted-12.png" alt="upload successful"></p><blockquote><p>图 2</p></blockquote><p>现在应用市场中有两个应用详情，会有点疑惑，从设计上看，应该是以图 2 为准，然后把图1 中的评价反馈列表设计到图 2 中，这一点需要确认一下。</p><h3 id="确认结果"><a href="#确认结果" class="headerlink" title="确认结果"></a>确认结果</h3><p>以图 2 为原型处理。评价的先设计暂时先不做。</p><h2 id="应用案例"><a href="#应用案例" class="headerlink" title="应用案例"></a>应用案例</h2><p><img src="/images/pasted-13.png" alt="upload successful"></p><p>首页的应用案例，目前从目录看对应的是应用案例，目前应用案例看应该是图中箭头指出的MES<br>、WMS、组件介绍三个页面，后面的草稿是否还有需要添加的内容需要确认。</p><h3 id="确认结果-1"><a href="#确认结果-1" class="headerlink" title="确认结果"></a>确认结果</h3><p>MES、WMS 这两个先做 就是针对这两个套件的介绍页面<br>先以MES草稿1 和 WMS草稿1为原型设计润色，如果需要丰富文案的话，Don 再继续提供。</p><h2 id="Header-平台菜单"><a href="#Header-平台菜单" class="headerlink" title="Header 平台菜单"></a>Header 平台菜单</h2><p><img src="/images/pasted-14.png" alt="upload successful"></p><p>首页的 Header 上面有一个平台的二级菜单，这个菜单对应的应该是哪个页面需要确认一下。</p><h3 id="确认结果-2"><a href="#确认结果-2" class="headerlink" title="确认结果"></a>确认结果</h3><p>MES、WMS 原始设计是针对套件的不同版本 暂时先不做。</p><h2 id="AGS-管理后台"><a href="#AGS-管理后台" class="headerlink" title="AGS 管理后台"></a>AGS 管理后台</h2><p><img src="/images/pasted-15.png" alt="upload successful"></p><p>设计反馈，AGS 管理后台从图中设计看是我们的管理员后台，这个当时在合同中是没有的这部分，我们这边可以参考 SI 管理后台进行页面处理，这个是否需要设计重新做。</p><h3 id="确认结果-3"><a href="#确认结果-3" class="headerlink" title="确认结果"></a>确认结果</h3><p>先设计 SI 管理后台，AGS 暂不处理</p>]]></content>
       
       
       

@@ -20,15 +20,19 @@
     var CONFIG = {"hostname":"imcoders.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="I-Coder">
-<meta property="og:url" content="http://imcoders.cn/archives/2023/07/page/2/index.html">
+  <meta name="description" content="Vue网站的一些逻辑设计。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-Page-Biz">
+<meta property="og:url" content="http://imcoders.cn/2023/08/01/Vue-Page-Biz/index.html">
 <meta property="og:site_name" content="I-Coder">
+<meta property="og:description" content="Vue网站的一些逻辑设计。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-01T08:36:17.000Z">
+<meta property="article:modified_time" content="2023-08-01T08:55:21.684Z">
 <meta property="article:author" content="Ryan Yang">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://imcoders.cn/archives/2023/07/page/2/">
+<link rel="canonical" href="http://imcoders.cn/2023/08/01/Vue-Page-Biz/">
 
 
 <script id="page-configurations">
@@ -36,12 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | I-Coder</title>
+  <title>Vue-Page-Biz | I-Coder</title>
   
 
 
@@ -180,119 +184,108 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/08/01/Vue-Page-Biz/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo_b.jpeg">
+      <meta itemprop="name" content="Ryan Yang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue-Page-Biz
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-01 16:36:17 / 修改时间：16:55:21" itemprop="dateCreated datePublished" datetime="2023-08-01T16:36:17+08:00">2023-08-01</time>
+            </span>
+
+          
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 24 篇日志。 继续努力。</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2023/08/01/Vue-Page-Biz/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/08/01/Vue-Page-Biz/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
-    </div>
+        <p>Vue网站的一些逻辑设计。</p>
+<span id="more"></span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-07-18T13:55:18+08:00"
-              content="2023-07-18">
-          07-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/07/18/license%E8%AF%95%E7%94%A8%E6%8E%A5%E5%8F%A3/" itemprop="url">
-            <span itemprop="name">license试用接口</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-07-17T10:38:59+08:00"
-              content="2023-07-17">
-          07-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/07/17/windows-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" itemprop="url">
-            <span itemprop="name">windows 环境变量</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-07-10T11:30:05+08:00"
-              content="2023-07-10">
-          07-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/07/10/%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99%E5%8E%9F%E5%9E%8B/" itemprop="url">
-            <span itemprop="name">门户网站原型</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-07-04T09:41:12+08:00"
-              content="2023-07-04">
-          07-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/07/04/%E5%B9%95%E5%AE%A2%E7%A1%AE%E5%AE%9A/" itemprop="url">
-            <span itemprop="name">幕客确定</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+<h2 id="token-的检查"><a href="#token-的检查" class="headerlink" title="token 的检查"></a>token 的检查</h2><h3 id="Cookie-参数检查"><a href="#Cookie-参数检查" class="headerlink" title="Cookie 参数检查"></a>Cookie 参数检查</h3><p>前端登录状态的检查，应该是 token 检查，当用户登录后，每次页面跳转或者加载的时候需要检查当前的 cookie 中是否包含了所有的必要参数，若是没有的话，清空其他参数，跳转登录页面。</p>
+<h3 id="Meper-token"><a href="#Meper-token" class="headerlink" title="Meper token"></a>Meper token</h3><p>当用户跳转到 App 或者 MEPER 平台管理页面的话，检查当前说否有 MEPER-TOKEN 或者 Meper-TOKEN，若没有的话证明当前 User 没有进行企业认证或者企业认证没有被审核，跳转到企业认证页面。</p>
+<h2 id="页面逻辑"><a href="#页面逻辑" class="headerlink" title="页面逻辑"></a>页面逻辑</h2><p><span style="color:red" > <strong>重点：</strong> </span> </p>
+<blockquote>
+<p>需要注意的是管理员页面按照我的设计应该是和普通的 SI 后台分开部署，直接就进行物理隔离，放用户不可能访问到页面，而不是通过前端的 router 去控制。</p>
+</blockquote>
+<h3 id="未登录状态"><a href="#未登录状态" class="headerlink" title="未登录状态"></a>未登录状态</h3><p>用户注册 -&gt; 用户登录 -&gt; 企业认证  -&gt; 企业审核</p>
+<p>按照这四个逻辑进行， 页面的跳转先后逻辑。</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/01/8-1Meper-Project/" rel="prev" title="8-1Meper-Project">
+      <i class="fa fa-chevron-left"></i> 8-1Meper-Project
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2023/07/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2023/07/">1</a><span class="page-number current">2</span>
-  </nav>
+  
+  
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -339,6 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#token-%E7%9A%84%E6%A3%80%E6%9F%A5"><span class="nav-number">1.</span> <span class="nav-text">token 的检查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-%E5%8F%82%E6%95%B0%E6%A3%80%E6%9F%A5"><span class="nav-number">1.1.</span> <span class="nav-text">Cookie 参数检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Meper-token"><span class="nav-number">1.2.</span> <span class="nav-text">Meper token</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E9%80%BB%E8%BE%91"><span class="nav-number">2.</span> <span class="nav-text">页面逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81"><span class="nav-number">2.1.</span> <span class="nav-text">未登录状态</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -354,7 +348,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
