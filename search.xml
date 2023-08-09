@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>企业认证业务</title>
+      <link href="/2023/08/09/%E4%BC%81%E4%B8%9A%E8%AE%A4%E8%AF%81%E4%B8%9A%E5%8A%A1/"/>
+      <url>/2023/08/09/%E4%BC%81%E4%B8%9A%E8%AE%A4%E8%AF%81%E4%B8%9A%E5%8A%A1/</url>
+      
+        <content type="html"><![CDATA[<p>企业认证业务逻辑优化</p><span id="more"></span><h2 id="管理员审核页面"><a href="#管理员审核页面" class="headerlink" title="管理员审核页面"></a>管理员审核页面</h2><p><img src="/images/pasted-59.png" alt="upload successful"></p><p>管理员审核页面，列表显示去掉冗余字段保留关键字段</p><table><thead><tr><th>公司名</th><th>审核状态</th><th>创建时间</th><th>法人</th><th>联系电话</th><th>操作</th></tr></thead><tbody><tr><td>测试 1</td><td>待审核</td><td>2023-8-8 15:12</td><td>刘德华</td><td>153002020</td><td><button onclick="alert('弹出详情，进行审核')">审核</button></td></tr><tr><td>测试 2</td><td>待审核</td><td>2023-8-8 15:12</td><td>刘亦菲</td><td>153002020</td><td><button onclick="alert('弹出详情，进行审核')">审核</button></td></tr><tr><td>333</td><td>待审核</td><td>2023-8-8 15:12</td><td>张学友</td><td>153002020</td><td><button onclick="alert('弹出详情，进行审核')">审核</button></td></tr></tbody></table><h2 id="SI-页面"><a href="#SI-页面" class="headerlink" title="SI 页面"></a>SI 页面</h2><h3 id="1、审核状态标识"><a href="#1、审核状态标识" class="headerlink" title="1、审核状态标识"></a>1、审核状态标识</h3><p><img src="/images/pasted-60.png" alt="upload successful"><br>SI 管理员页面的企业认证状态标识</p><p>可以能清晰的看出来当前公司的审核状态。</p><h3 id="2、审核通过后"><a href="#2、审核通过后" class="headerlink" title="2、审核通过后"></a>2、审核通过后</h3><p>企业审核认证通过后，不再允许SI进行企业数据更新。</p><h3 id="3、申请修改"><a href="#3、申请修改" class="headerlink" title="3、申请修改"></a>3、申请修改</h3><p>这个需求可以延后再处理，审核通过后需要更新企业信息的话，需要提交修改申请。</p><p>所以对企业的状态设计可能要增加状态，然后对管理员的功能也要开放对当前企业的可修改状态的审核。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>邮箱的需求逻辑</title>
       <link href="/2023/08/09/%E9%82%AE%E7%AE%B1%E7%9A%84%E9%9C%80%E6%B1%82%E9%80%BB%E8%BE%91/"/>
       <url>/2023/08/09/%E9%82%AE%E7%AE%B1%E7%9A%84%E9%9C%80%E6%B1%82%E9%80%BB%E8%BE%91/</url>
