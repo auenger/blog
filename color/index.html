@@ -11,11 +11,41 @@
 	<input style="height: 20px;padding: 2px;" type="text" id="bginput" placeholder=" 图片链接地址"/> <button id="clearButton">X</button>
 
 <button onclick="changeBg()">设置背景</button>
+
+｜
+<input type="file" id="fileInput">
+<button id="setImageButton">选择的图片设置</button>
+
   <div class="anim-wrap" id="ele">
 	<div class="anim-text anim-text1" contenteditable spellcheck="false">Type something</div>
 	<br />
 	<div class="anim-text anim-text2" contenteditable spellcheck="false">Type something</div>
 </div>
     <script src="js/index.js"></script>
+	<script>
+	// 获取元素和文件输入
+	const imageContainer = document.getElementById('ele');
+	const fileInput = document.getElementById('fileInput');
+	const setImageButton = document.getElementById('setImageButton');
+	
+	// 为设置按钮添加点击事件监听
+	setImageButton.addEventListener('click', function() {
+	  // 获取用户选择的图片文件
+	  const selectedFile = fileInput.files[0];
+	  
+	  if (selectedFile) {
+	    // 创建 FileReader 对象来读取图片文件
+	    const reader = new FileReader();
+	
+	    // 当读取完成时，将图片内容设置为元素的背景图
+	    reader.onload = function(e) {
+	      imageContainer.style.backgroundImage = `url(${e.target.result})`;
+	    }
+	
+	    // 读取图片文件
+	    reader.readAsDataURL(selectedFile);
+	  }
+	});
+	</script>
 </body>
 </html>
