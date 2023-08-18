@@ -20,21 +20,19 @@
     var CONFIG = {"hostname":"imcoders.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="window server 产生 exe 文件服务的调整">
+  <meta name="description" content="基础数据包产出流程 由于之前写入数据都是 liquibase 脚本实现，所以数据清理比较麻烦，整理数据准备流程。      启动服务，不要加 MODE&#x3D;SPACE 配置，弃用权限控制   创建默认公司 CompanyID 是 1   创建默认项目 project Id是 1   更新 Admin 账号 CompanyId 和 Datapermissionpredicate 都是 1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="App生成服务">
-<meta property="og:url" content="http://imcoders.cn/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/index.html">
+<meta property="og:title" content="基础数据包 MEPERApp">
+<meta property="og:url" content="http://imcoders.cn/2023/08/18/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E5%8C%85-MEPERApp/index.html">
 <meta property="og:site_name" content="I-Coder">
-<meta property="og:description" content="window server 产生 exe 文件服务的调整">
+<meta property="og:description" content="基础数据包产出流程 由于之前写入数据都是 liquibase 脚本实现，所以数据清理比较麻烦，整理数据准备流程。      启动服务，不要加 MODE&#x3D;SPACE 配置，弃用权限控制   创建默认公司 CompanyID 是 1   创建默认项目 project Id是 1   更新 Admin 账号 CompanyId 和 Datapermissionpredicate 都是 1">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://imcoders.cn/images/pasted-22.png">
-<meta property="article:published_time" content="2023-07-21T16:46:25.000Z">
-<meta property="article:modified_time" content="2023-07-21T17:11:40.085Z">
+<meta property="article:published_time" content="2023-08-18T01:42:25.000Z">
+<meta property="article:modified_time" content="2023-08-18T01:48:57.940Z">
 <meta property="article:author" content="Ryan Yang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://imcoders.cn/images/pasted-22.png">
 
-<link rel="canonical" href="http://imcoders.cn/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/">
+<link rel="canonical" href="http://imcoders.cn/2023/08/18/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E5%8C%85-MEPERApp/">
 
 
 <script id="page-configurations">
@@ -47,7 +45,7 @@
   };
 </script>
 
-  <title>App生成服务 | I-Coder</title>
+  <title>基础数据包 MEPERApp | I-Coder</title>
   
 
 
@@ -193,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/">
+    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/08/18/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E5%8C%85-MEPERApp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo_b.jpeg">
@@ -206,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          App生成服务
+          基础数据包 MEPERApp
         </h1>
 
         <div class="post-meta">
@@ -217,7 +215,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-07-22 00:46:25 / 修改时间：01:11:40" itemprop="dateCreated datePublished" datetime="2023-07-22T00:46:25+08:00">2023-07-22</time>
+              <time title="创建时间：2023-08-18 09:42:25 / 修改时间：09:48:57" itemprop="dateCreated datePublished" datetime="2023-08-18T09:42:25+08:00">2023-08-18</time>
             </span>
 
           
@@ -229,8 +227,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/22/App-%E5%AE%89%E5%85%A8%E7%94%9F%E6%88%90/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/08/18/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E5%8C%85-MEPERApp/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/08/18/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E5%8C%85-MEPERApp/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -245,16 +243,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>window server 产生 exe 文件服务的调整</p>
-<span id="more"></span>
+        <p>基础数据包产出流程</p>
+<p>由于之前写入数据都是 liquibase 脚本实现，所以数据清理比较麻烦，整理数据准备流程。</p>
+<!-- mroe -->
 
-<h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>打包生成的 exe 脚本执行需要windows server 环境，最初的设计是重新封装一个 springboot 服务进行打包，不熟到 windows server 服务器，但是考虑到没必要进行太多次的网络请求，浪费流量成本和网络时间开销，所以目前重新设计，将打包 exe 逻辑接口迁移到 MEPER 服务中， MEPER 暂定部署两个节点，一个 docker  Linux 节点，一个 windows server 节点。</p>
-<h2 id="需求说明"><a href="#需求说明" class="headerlink" title="需求说明"></a>需求说明</h2><p>将打包 exe 脚本接口迁移到 MEPER 中，然后将 portal 调用 MEPER 的接口分成两部分，直接配置指向对应 IP，将 project 打包导出文件接口和 App 封包 exe 接口都去请求Windows server 的服务，则对应产生的 App 数据包和对应的 Inno setup 脚本都在同一个 windows server 服务器，进一步减少网络开销，且当前 windows server 的 MEPER 只去处理文件相关的接口，减轻对应的业务逻辑。</p>
-<h2 id="逻辑时序图"><a href="#逻辑时序图" class="headerlink" title="逻辑时序图"></a>逻辑时序图</h2><p><img src="/images/pasted-22.png" alt="upload successful"></p>
-<h2 id="需求明细"><a href="#需求明细" class="headerlink" title="需求明细"></a>需求明细</h2><h3 id="1、接口迁移"><a href="#1、接口迁移" class="headerlink" title="1、接口迁移"></a>1、接口迁移</h3><p>把之前的 spring boot 逻辑迁移到 MEPER 服务，新开放 http 接口处理打包业务。</p>
-<h3 id="2、处理-App-导出数据包存储的逻辑"><a href="#2、处理-App-导出数据包存储的逻辑" class="headerlink" title="2、处理 App 导出数据包存储的逻辑"></a>2、处理 App 导出数据包存储的逻辑</h3><p>之前的打包文件的 package 逻辑对应的文件路径重新整理逻辑。</p>
-<h3 id="3、初始化项目接口获取-App-数据包"><a href="#3、初始化项目接口获取-App-数据包" class="headerlink" title="3、初始化项目接口获取 App 数据包"></a>3、初始化项目接口获取 App 数据包</h3><p>优化创建 project 的逻辑，根据 Appid 获取对应 jbf 数据包，优化数据备份接口，还有项目初始化过程中的数据初始化 Task，兼容新的.MEPERApp (gzip,zip)文件。</p>
-<h3 id="4、portal-的-fegin接口整理"><a href="#4、portal-的-fegin接口整理" class="headerlink" title="4、portal 的 fegin接口整理"></a>4、portal 的 fegin接口整理</h3><p>处理portal 的 fegin 接口，对应请求打包文件相关的接口独立区分开。</p>
+
+
+<blockquote>
+<p>启动服务，不要加 MODE&#x3D;SPACE 配置，弃用权限控制</p>
+</blockquote>
+<blockquote>
+<p>创建默认公司 CompanyID 是 1</p>
+</blockquote>
+<blockquote>
+<p>创建默认项目 project Id是 1</p>
+</blockquote>
+<blockquote>
+<p>更新 Admin 账号 CompanyId 和 Datapermissionpredicate 都是 1 </p>
+</blockquote>
+<blockquote>
+<p>更新 menuNode 的 CompanyId 和 Datapermissionpredicate 都是 1 </p>
+</blockquote>
+<blockquote>
+<p>更新 pageedit 的 CompanyId 和 Datapermissionpredicate 都是 1</p>
+</blockquote>
 
     </div>
 
@@ -270,13 +282,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/07/18/license%E8%AF%95%E7%94%A8%E6%8E%A5%E5%8F%A3/" rel="prev" title="license试用接口">
-      <i class="fa fa-chevron-left"></i> license试用接口
+    <a href="/2023/08/10/MEPER-Cloud-MultiDB/" rel="prev" title="MEPER-Cloud-MultiDB">
+      <i class="fa fa-chevron-left"></i> MEPER-Cloud-MultiDB
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/07/22/MEPER-License/" rel="next" title="MEPER License">
-      MEPER License <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -336,7 +345,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">需求背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">需求说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="nav-number">3.</span> <span class="nav-text">逻辑时序图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E6%98%8E%E7%BB%86"><span class="nav-number">4.</span> <span class="nav-text">需求明细</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%8E%A5%E5%8F%A3%E8%BF%81%E7%A7%BB"><span class="nav-number">4.1.</span> <span class="nav-text">1、接口迁移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%A4%84%E7%90%86-App-%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E5%8C%85%E5%AD%98%E5%82%A8%E7%9A%84%E9%80%BB%E8%BE%91"><span class="nav-number">4.2.</span> <span class="nav-text">2、处理 App 导出数据包存储的逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE%E6%8E%A5%E5%8F%A3%E8%8E%B7%E5%8F%96-App-%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="nav-number">4.3.</span> <span class="nav-text">3、初始化项目接口获取 App 数据包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81portal-%E7%9A%84-fegin%E6%8E%A5%E5%8F%A3%E6%95%B4%E7%90%86"><span class="nav-number">4.4.</span> <span class="nav-text">4、portal 的 fegin接口整理</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
