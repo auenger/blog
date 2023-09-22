@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>MEPER打印组件</title>
+      <link href="/2023/09/18/MEPER%E6%89%93%E5%8D%B0%E7%BB%84%E4%BB%B6/"/>
+      <url>/2023/09/18/MEPER%E6%89%93%E5%8D%B0%E7%BB%84%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<p>之前的 meper 打印服务都嵌套在其他的业务逻辑中，类似工单打印功能等等，所以对打印功能的拓展比较受限，所以考虑提取打印功能，提供客制化属性，把打印功能抽到meper 的 appbase 中，作为一个功能组件，让二次开发使用打印功能更简单高效。</p><span id="more"></span><h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>为了能让打印功能更方便的使用，所以将之前的打印功能封装为按钮组件，可以在二次开发的页面设计中， 直接为页面添加打印功能，提高二次开发效率。</p><h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>为了可以直接在页面设计中使用打印组件，所以打印相关的基础属性都需要迁移到 Appbase 中，包括设备管理的打印机管理，打印模板的编辑和上传，这两个基础属性都需要迁移到 Appbase 中，然后目前的打印是通过代码或者配置字段名进行数据绑定，所以在将打印功能封装成按钮的话，需要针对按钮进行配置数据源的操作。</p><h2 id="组件设计"><a href="#组件设计" class="headerlink" title="组件设计"></a>组件设计</h2><p>打印功能设计成类似按钮，绑定点击事件，双击在元素中可以配置对应的数据源信息，也就是在选中打印的时候，可以绑定当前 grid 的一个 item 数据，然后选择对应的打印模板，在选择data 和打印模板之后，可以配置当前打印模板中的数据模型和 grid 中选中的 item 的 data 去绑定数据映射关系，去打印。</p><h2 id="原型和逻辑"><a href="#原型和逻辑" class="headerlink" title="原型和逻辑"></a>原型和逻辑</h2><p>在页面设计中新增一个打印组件如下图，</p><p><img src="/images/pasted-63.png" alt="upload successful"></p><p>打印组件其实就是 button，将 button 重新进行封装做为打印组件，双击进行编辑的时候，可以选择当前设计页面中的 Grid 作为数据源进行绑定，在设计阶段进行绑定数据源和对应的打印模板。</p><p><img src="/images/pasted-64.png" alt="upload successful"></p><p>选择的数据源之后，还要选择打印模板，所以打印模板应该是页面设计之前做处理。</p><p><img src="/images/pasted-65.png" alt="upload successful"></p><p>选择打印模板之后，可以针对数据源字段和打印模板字段进行数据绑定。</p><p>至此打印组件在页面设计阶段的逻辑就处理完成。</p><h3 id="使用逻辑"><a href="#使用逻辑" class="headerlink" title="使用逻辑"></a>使用逻辑</h3><p>在页面中选中一条或者多条数据后点击打印按钮，类似之前的打印调用规则，直接选择对应已经链接的打印机，进行打印逻辑调用，目前这一块的逻辑是已有的。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基础数据包 MEPERApp</title>
       <link href="/2023/08/18/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E5%8C%85-MEPERApp/"/>
       <url>/2023/08/18/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E5%8C%85-MEPERApp/</url>

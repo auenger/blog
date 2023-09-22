@@ -20,21 +20,23 @@
     var CONFIG = {"hostname":"imcoders.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="SQL优化是数据库性能优化中的重要环节，常见的SQL优化包括以下几种：">
+  <meta name="description" content="之前的 meper 打印服务都嵌套在其他的业务逻辑中，类似工单打印功能等等，所以对打印功能的拓展比较受限，所以考虑提取打印功能，提供客制化属性，把打印功能抽到meper 的 appbase 中，作为一个功能组件，让二次开发使用打印功能更简单高效。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库SQL优化">
-<meta property="og:url" content="http://imcoders.cn/2023/04/11/%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:title" content="MEPER打印组件">
+<meta property="og:url" content="http://imcoders.cn/2023/09/18/MEPER%E6%89%93%E5%8D%B0%E7%BB%84%E4%BB%B6/index.html">
 <meta property="og:site_name" content="I-Coder">
-<meta property="og:description" content="SQL优化是数据库性能优化中的重要环节，常见的SQL优化包括以下几种：">
+<meta property="og:description" content="之前的 meper 打印服务都嵌套在其他的业务逻辑中，类似工单打印功能等等，所以对打印功能的拓展比较受限，所以考虑提取打印功能，提供客制化属性，把打印功能抽到meper 的 appbase 中，作为一个功能组件，让二次开发使用打印功能更简单高效。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-11T08:29:00.000Z">
-<meta property="article:modified_time" content="2023-04-12T01:29:35.799Z">
+<meta property="og:image" content="http://imcoders.cn/images/pasted-63.png">
+<meta property="og:image" content="http://imcoders.cn/images/pasted-64.png">
+<meta property="og:image" content="http://imcoders.cn/images/pasted-65.png">
+<meta property="article:published_time" content="2023-09-18T05:18:55.000Z">
+<meta property="article:modified_time" content="2023-09-22T02:38:36.716Z">
 <meta property="article:author" content="Ryan Yang">
-<meta property="article:tag" content="DB">
-<meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://imcoders.cn/images/pasted-63.png">
 
-<link rel="canonical" href="http://imcoders.cn/2023/04/11/%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96/">
+<link rel="canonical" href="http://imcoders.cn/2023/09/18/MEPER%E6%89%93%E5%8D%B0%E7%BB%84%E4%BB%B6/">
 
 
 <script id="page-configurations">
@@ -47,7 +49,7 @@
   };
 </script>
 
-  <title>数据库SQL优化 | I-Coder</title>
+  <title>MEPER打印组件 | I-Coder</title>
   
 
 
@@ -193,7 +195,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/04/11/%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="http://imcoders.cn/2023/09/18/MEPER%E6%89%93%E5%8D%B0%E7%BB%84%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo_b.jpeg">
@@ -206,7 +208,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          数据库SQL优化
+          MEPER打印组件
         </h1>
 
         <div class="post-meta">
@@ -216,14 +218,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-04-11 16:29:00" itemprop="dateCreated datePublished" datetime="2023-04-11T16:29:00+08:00">2023-04-11</time>
+              <time title="创建时间：2023-09-18 13:18:55" itemprop="dateCreated datePublished" datetime="2023-09-18T13:18:55+08:00">2023-09-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-12 09:29:35" itemprop="dateModified" datetime="2023-04-12T09:29:35+08:00">2023-04-12</time>
+                <time title="修改时间：2023-09-22 10:38:36" itemprop="dateModified" datetime="2023-09-22T10:38:36+08:00">2023-09-22</time>
               </span>
 
           
@@ -235,8 +237,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2023/04/11/%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2023/04/11/%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E4%BC%98%E5%8C%96/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/09/18/MEPER%E6%89%93%E5%8D%B0%E7%BB%84%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/09/18/MEPER%E6%89%93%E5%8D%B0%E7%BB%84%E4%BB%B6/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -251,26 +253,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>SQL优化是数据库性能优化中的重要环节，常见的SQL优化包括以下几种：</p>
+        <p>之前的 meper 打印服务都嵌套在其他的业务逻辑中，类似工单打印功能等等，所以对打印功能的拓展比较受限，所以考虑提取打印功能，提供客制化属性，把打印功能抽到meper 的 appbase 中，作为一个功能组件，让二次开发使用打印功能更简单高效。</p>
 <span id="more"></span>
 
-<ul>
-<li><p><strong>索引优化：</strong>索引是提高数据库查询性能的关键。通过为经常查询的列创建索引，可以大幅度减少数据库查询时间。</p>
-</li>
-<li><p><strong>SQL重构：</strong>对复杂的SQL语句进行重构，将其分解为多个简单的语句，并使用连接查询、子查询等技术来优化查询性能。</p>
-</li>
-<li><p><strong>避免全表扫描：</strong>全表扫描是查询性能最差的操作之一。可以通过合理使用索引、使用limit等方法避免全表扫描。</p>
-</li>
-<li><p><strong>优化join操作：</strong>join是数据库查询中常用的操作，但在大数据量的情况下，join操作的性能往往较低。可以通过尽可能减少join操作、合理使用索引、使用临时表等方法来优化join操作性能。</p>
-</li>
-<li><p><strong>避免大事务：</strong>大事务会占用数据库资源，并可能导致死锁等问题。可以通过拆分大事务、使用批量操作等方法来避免大事务。</p>
-</li>
-<li><p><strong>优化数据类型：</strong>选择合适的数据类型可以提高查询性能。对于经常查询的列，应选择尽可能小的数据类型，以减少查询时间。</p>
-</li>
-<li><p><strong>合理使用缓存：</strong>对于经常访问的数据，可以使用缓存来减少数据库访问次数，从而提高查询性能。</p>
-</li>
-</ul>
-<p>总之，SQL优化是数据库性能优化中的重要环节，通过合理使用索引、优化查询语句、减少全表扫描等方法，可以大幅度提高数据库查询性能。</p>
+<h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>为了能让打印功能更方便的使用，所以将之前的打印功能封装为按钮组件，可以在二次开发的页面设计中， 直接为页面添加打印功能，提高二次开发效率。</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>为了可以直接在页面设计中使用打印组件，所以打印相关的基础属性都需要迁移到 Appbase 中，包括设备管理的打印机管理，打印模板的编辑和上传，这两个基础属性都需要迁移到 Appbase 中，然后目前的打印是通过代码或者配置字段名进行数据绑定，所以在将打印功能封装成按钮的话，需要针对按钮进行配置数据源的操作。</p>
+<h2 id="组件设计"><a href="#组件设计" class="headerlink" title="组件设计"></a>组件设计</h2><p>打印功能设计成类似按钮，绑定点击事件，双击在元素中可以配置对应的数据源信息，也就是在选中打印的时候，可以绑定当前 grid 的一个 item 数据，然后选择对应的打印模板，在选择data 和打印模板之后，可以配置当前打印模板中的数据模型和 grid 中选中的 item 的 data 去绑定数据映射关系，去打印。</p>
+<h2 id="原型和逻辑"><a href="#原型和逻辑" class="headerlink" title="原型和逻辑"></a>原型和逻辑</h2><p>在页面设计中新增一个打印组件如下图，</p>
+<p><img src="/images/pasted-63.png" alt="upload successful"></p>
+<p>打印组件其实就是 button，将 button 重新进行封装做为打印组件，双击进行编辑的时候，可以选择当前设计页面中的 Grid 作为数据源进行绑定，在设计阶段进行绑定数据源和对应的打印模板。</p>
+<p><img src="/images/pasted-64.png" alt="upload successful"></p>
+<p>选择的数据源之后，还要选择打印模板，所以打印模板应该是页面设计之前做处理。</p>
+<p><img src="/images/pasted-65.png" alt="upload successful"></p>
+<p>选择打印模板之后，可以针对数据源字段和打印模板字段进行数据绑定。</p>
+<p>至此打印组件在页面设计阶段的逻辑就处理完成。</p>
+<h3 id="使用逻辑"><a href="#使用逻辑" class="headerlink" title="使用逻辑"></a>使用逻辑</h3><p>在页面中选中一条或者多条数据后点击打印按钮，类似之前的打印调用规则，直接选择对应已经链接的打印机，进行打印逻辑调用，目前这一块的逻辑是已有的。</p>
 
     </div>
 
@@ -279,10 +276,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/DB/" rel="tag"># DB</a>
-              <a href="/tags/SQL/" rel="tag"># SQL</a>
-          </div>
 
         
 
@@ -290,13 +283,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/04/11/%E9%AB%98%E7%BA%A7Java%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%B8%88/" rel="prev" title="高级Java软件工程师">
-      <i class="fa fa-chevron-left"></i> 高级Java软件工程师
+    <a href="/2023/08/18/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E5%8C%85-MEPERApp/" rel="prev" title="基础数据包 MEPERApp">
+      <i class="fa fa-chevron-left"></i> 基础数据包 MEPERApp
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/04/11/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="next" title="Git常用命令">
-      Git常用命令 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -356,6 +346,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">需求背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">组件设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E5%92%8C%E9%80%BB%E8%BE%91"><span class="nav-number">4.</span> <span class="nav-text">原型和逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%80%BB%E8%BE%91"><span class="nav-number">4.1.</span> <span class="nav-text">使用逻辑</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
